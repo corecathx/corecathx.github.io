@@ -1,10 +1,5 @@
 @font-face {
     font-family: fredoka-bold;
-    src: url("./assets/fonts/Fredoka-Bold.ttf");
-    font-weight:bold;
-}
-@font-face {
-    font-family: fredoka-semibold;
     src: url("./assets/fonts/Fredoka-SemiBold.ttf");
     font-weight:bold;
 }
@@ -13,115 +8,91 @@
     src: url("./assets/fonts/Fredoka-SemiBold.ttf");
     font-weight:bold;
 }
-html, body {
+@font-face {
+    font-family: fredoka-semibold;
+    src: url("./assets/fonts/Fredoka-Regular.ttf");
+    font-weight:bold;
+}
+html {
     -webkit-font-smoothing: antialiased;
- -moz-osx-font-smoothing: grayscale;
-    background-color: black;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: rgb(0, 0, 0);
     color: white;
     font-family: fredoka-bold;
 }
+
 html {
     width: 100%;
+    height: 100%;
+    display: table;
+    margin: auto;
 }
 body {
-    width: 80%;
+    margin: 0px;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0);
+    display: table-cell;
+    vertical-align: middle;
+}
+
+h1 {
+    margin: 0%;
+}
+
+p {
+    margin: 0%;
+    font-family: fredoka-semibold;
+}
+
+.profilePicture {
+    width:150px;
+    border-radius: 1000px;
+}
+
+.head {
+    margin: 0px;
+    text-align:center;
+}
+
+.i-img {
+    width: 40px;
+    height: 40px;
+    filter: invert(100%);
+}
+
+.interactable-button {
+    margin-top: 10px;
+    animation: onButtonLeave 0.3s cubic-bezier(.17,.67,.33,.93) forwards;
+}
+
+.buttons {
+    display: flex;
+    justify-content:space-between;
+    max-width:400px;
     margin-left: auto;
     margin-right: auto;
 }
 
-h1 {
-    line-height: 20px;
-    margin-top: auto;
-    margin-bottom: auto;
-    font-size: 20px;
+.interactable-button:hover {
+    animation: onButtonHover 0.3s cubic-bezier(.17,.67,.33,.93) forwards;
 }
 
-.header {
-    display: flex;
-    border-bottom: 1px white solid;
-    margin-bottom: 10px;
-    padding: 5px;
-}
-
-.rowAlign {
-    display: flex;
-}
-
-.headerSplit {
-    flex-grow: 1;
-}
-
-.itemText {
-    font-size: 18px;
-    text-align: right;
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-right: 10px;
-}
-
-.imageTop {
-    background: url("./assets/corr.png") #00000062;
-    background-blend-mode:multiply;
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    height: 160px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-.h1Big {
-    letter-spacing: 2px;
-    opacity: 0%;
-    font-size: 40px;
-    margin: 0px;
-    padding-left: 20px;
-    animation: slideInRight 1s 0.5s forwards ease-out;
-}
-
-.pBig {
-    opacity: 0%;
-    animation: slideInRight 1s 1s forwards ease-out;
-    font-family: fredoka-semibold;
-    font-size: 20px;
-    padding-left: 20px;
-    margin: 0px;
-    margin-top: 10px;
-}
-
-.weird {
-    height: 0%;
-    width: 0px; 
-    background-color: white;
-    animation: sizeTween 1s  forwards ease-out;
-}
-
-.content {
-    height: 100%;
-    width: 100%;
-}
-
-@keyframes sizeTween {
-    from {
-        margin-left: -20px;
-        width: 0px;
-        height: 0%;
-    }
-    to {
-        margin-left: 0px;
-        width: 2px;
-        height: 100%;
-    }
-}
-
-@keyframes slideInRight {
-    from {
-        margin-left: -20px;
-        opacity: 0%;
-    }
-
-    to {
-        margin-left: 0px;
+@keyframes onButtonHover {
+    from{
+        width: 40px;
         opacity: 100%;
+        transform: scale(1,1);
+    }
+    to{
+        width: 80px;opacity: 50%;
+        transform: scale(1.2,1.2);
+    }
+}
+
+@keyframes onButtonLeave {
+    from{width: 80px;opacity: 50%;transform: scale(1.2,1.2);}
+    to{
+        width: 40px;opacity: 100%;
+        transform: scale(1,1);
     }
 }
