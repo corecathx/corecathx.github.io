@@ -244,19 +244,23 @@ function loadProjectList() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    loadAudioList();
-    loadProjectList();
-    document.getElementById("profile-image").onclick = () => {
-        const audio = new Audio(`./assets/core/meow${Math.floor(Math.random() * 4) + 1}.ogg`);
-        audio.play();
-    };
-
-    const cursor = document.getElementById('cursor');
-
-    document.addEventListener('mousemove', (event) => {
-        cursor.style.left = `${event.clientX}px`;
-        cursor.style.top = `${event.clientY}px`;
-    });
+    setTimeout(()=>{
+        document.getElementById("whole").classList.remove("hidden");
+        document.getElementById("wawaloader").classList.add("hidden");
+        loadAudioList();
+        loadProjectList();
+        document.getElementById("profile-image").onclick = () => {
+            const audio = new Audio(`./assets/core/meow${Math.floor(Math.random() * 4) + 1}.ogg`);
+            audio.play();
+        };
+    
+        const cursor = document.getElementById('cursor');
+    
+        document.addEventListener('mousemove', (event) => {
+            cursor.style.left = `${event.clientX}px`;
+            cursor.style.top = `${event.clientY}px`;
+        });
+    },1000);
 });
 
 function switchPanel(name) {

@@ -9,14 +9,13 @@
         <meta property="og:color" content="#7289DA">
         <meta property="og:image" content="https://raw.githubusercontent.com/Core5570RYT/core5570ryt.github.io/main/assets/CoreDev.png">
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>CoreCat</title>
         <link rel="icon" type="image/x-icon" href="./assets/CoreDev.png">
         <link rel="stylesheet" href="./styles.css">
     </head>
     <body>
         <canvas id="visualizer"></canvas>
-        <div class="column">
+        <div class="column hidden" id="whole">
             <div class="flex">
                 <div class="column">
                     <div class="panel" id="profile">
@@ -72,7 +71,7 @@
                     <a id="interactable-button" href="https://discord.com/users/694791036094119996">
                         <img id="i-img" src="https://www.svgrepo.com/show/330307/discord.svg">
                     </a>
-                    <a id="interactable-button" href="https://github.com/Core5570RYT/">
+                    <a id="interactable-button" href="https://github.com/corecathx/">
                         <img id="i-img" src="https://www.svgrepo.com/show/512317/github-142.svg">
                     </a>
                     <a id="interactable-button" href="https://x.com/core5570r">
@@ -88,6 +87,13 @@
             </div>
         </div>
 
+        <div class="panel" id="wawaloader">
+            <div class="LoadingScreen">
+                <img src="https://www.svgrepo.com/show/448500/loading.svg" width="50px" class="loadingImg">
+                <h1 style="margin-top: auto; margin-bottom: auto; margin-left: 20px;">Loading...</h1>
+            </div>
+
+        </div>
 
         <div id="cursor"></div>
     </body>
