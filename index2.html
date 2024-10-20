@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="CoreCat">
+        <meta property="og:description" content="Core5570R's Personal GitHub Site.">
+        <meta property="og:footer" content="Literally, awesome">
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black" />
+        <meta property="og:color" content="#7289DA">
+        <meta property="og:image" content="https://raw.githubusercontent.com/Core5570RYT/core5570ryt.github.io/main/assets/CoreDev.png">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CoreCat</title>
+        <link rel="icon" type="image/x-icon" href="./assets/CoreDev.png">
+        <link rel="stylesheet" href="./styles.css">
+    </head>
+    <body>
+        <canvas id="visualizer"></canvas>
+        <div class="column">
+            <div class="flex">
+                <div class="column">
+                    <div class="panel" id="profile">
+                        <div class="flex">
+                            <img id="profile-image" src="https://cdn.discordapp.com/avatars/694791036094119996/08795150028fbab041c2cc9359bc5e43.webp?size=512" alt="CoreCat Profile Picture.">
+                            <div id="profile-text">
+                                <h1>CoreCat</h1>
+                                <p id="profile-username">@core5570r</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <p id="profile-description">Hello, I'm CoreCat. I like to make music,<br>draw, and coding stuff.</p>
+                    </div>
+    
+                    <div class="panel" id="about-me">
+                        <h2>Menus</h2>
+                        <hr>
+                        <div id="buttons">
+                            <a id="interactable-button" onclick="switchPanel('projects');">
+                                <img id="i-img" src="https://www.svgrepo.com/show/535400/folder.svg">
+                            </a>
+                            <a id="interactable-button" onclick="switchPanel('musics');">
+                                <img id="i-img" src="https://www.svgrepo.com/show/535515/music.svg">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+    
+                <div>
+                    <div id="musics" class="panel hidden">
+                        <h2>Audio Files</h2>
+                        <p id="low">(Last updated: 10-19-2024)</p>
+                        <hr>
+                        <div id="music-list">
+                        </div>
+                    </div>
+
+                    <div id="projects" class="panel">
+                        <h2>Projects</h2>
+                        <p id="low">(Stuff I made!)</p>
+                        <hr>
+                        <div id="project-list">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div id="info" class="panel">
+                <div id="buttons">
+                    <a id="interactable-button" href="https://www.youtube.com/@core5570r">
+                        <img id="i-img" src="https://www.svgrepo.com/show/513089/youtube-168.svg">
+                    </a>
+                    <a id="interactable-button" href="https://discord.com/users/694791036094119996">
+                        <img id="i-img" src="https://www.svgrepo.com/show/330307/discord.svg">
+                    </a>
+                    <a id="interactable-button" href="https://github.com/Core5570RYT/">
+                        <img id="i-img" src="https://www.svgrepo.com/show/512317/github-142.svg">
+                    </a>
+                    <a id="interactable-button" href="https://x.com/core5570r">
+                        <img id="i-img" src="https://upload.wikimedia.org/wikipedia/commons/5/53/X_logo_2023_original.svg">
+                    </a>
+                    <a id="interactable-button" href="https://instagram.com/core5570r">
+                        <img id="i-img" src="https://www.svgrepo.com/show/521711/instagram.svg">
+                    </a>
+                    <a id="interactable-button" href="https://open.spotify.com/artist/5p0Zxa2eYgAr6iz04evSCL">
+                        <img id="i-img" src="https://www.svgrepo.com/show/512899/spotify-162.svg">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="cursor"></div>
+    </body>
+
+    <script src="./script.js"></script>
+</html>

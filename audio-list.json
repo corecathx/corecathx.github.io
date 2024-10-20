@@ -1,0 +1,39 @@
+{
+    "list": [
+        {
+            "name": "2000",
+            "genre": "Glitch Hop",
+            "source": "./assets/audio/2000 (Glitch Hop).wav"
+        },
+        {
+            "name": "Heart & Soul",
+            "genre": "Glitch Hop",
+            "source": "./assets/audio/Heart & Soul (Glitch Hop).wav"
+        },
+        {
+            "name": "Back To Sleep",
+            "genre": "Hyperpop",
+            "source": "./assets/audio/Back To Sleep (Hyperpop).wav"
+        },
+        {
+            "name": "Dark Blue",
+            "genre": "Rock Drum and Bass",
+            "source": "./assets/audio/Dark Blue (Rock Drum and Bass).wav"
+        },
+        {
+            "name": "Flame",
+            "genre": "OMFG Style",
+            "source": "./assets/audio/Flame (OMFG Style).wav"
+        },
+        {
+            "name": "Box",
+            "genre": "OMFG Style",
+            "source": "./assets/audio/Box (OMFG Style).wav"
+        },
+        {
+            "name": "I Hope You Like It",
+            "genre": "2024 Ver, OMFG Style",
+            "source": "./assets/audio/I Hope You Like It (2024 Ver, OMFG Style).wav"
+        }
+    ]
+}

@@ -1,0 +1,217 @@
+@font-face {
+    font-family: consolas-bold;
+    src: url("./assets/fonts/consolab.ttf");
+    font-weight:bold;
+}
+@font-face {
+    font-family: consolas-bold;
+    src: url("./assets/fonts/consolas-bold.ttf");
+    font-weight:bold;
+}
+@font-face {
+    font-family: consolas;
+    src: url("./assets/fonts/consola.ttf");
+    font-weight:bold;
+}
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    font-family: consolas-bold;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    display: table;
+    margin: auto;
+}
+body {
+    margin: 0px;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0);
+    display: table-cell;
+    vertical-align: middle;
+}
+
+h1 {
+    margin: 0%;
+}
+a {
+    text-decoration: none;
+}
+a > img {
+    width: 16px;
+    transition: width .4s cubic-bezier(.17,.67,.33,.93);
+}
+a > img:hover {
+    width: 24px;
+}
+
+p {
+    margin: 0%;
+    font-family: consolas;
+}
+
+.profilePicture {
+    width:150px;
+    border-radius: 1000px;
+}
+
+.head {
+    margin: 0px;
+    text-align:center;
+}
+
+.i-img {
+    object-fit: contain;
+    width: 35px;
+    height: 100%;
+    filter: invert(100%);
+}
+
+.interactable-button {
+    padding-top: 10px;
+    animation: onButtonLeave 0.4s cubic-bezier(.17,.67,.33,.93) forwards;
+}
+
+.buttons {
+    display: flex;
+    justify-content:space-between;
+    max-width:350px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.interactable-button:hover {
+    animation: onButtonHover 0.3s cubic-bezier(.17,.67,.33,.93) forwards;
+}
+
+.usnHandle {
+    display: flex;
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.usnChild {
+    margin-top: auto;
+    margin-bottom: 8px;
+    margin-left: 10px;
+    font-size: 14px;
+    color: rgb(80, 80, 80);
+}
+
+@keyframes onButtonHover {
+    from{
+        width: 35px;
+        opacity: 100%;
+    }
+    to{
+        width: 30px;opacity: 50%;
+    }
+}
+
+@keyframes onButtonLeave {
+    from{width: 30px;opacity: 50%;}
+    to{
+        width: 35px;opacity: 100%;
+    }
+}
+
+/** AUDIO.html **/
+.audio-player {
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px;
+    border: 1px solid rgb(124, 124, 124);
+    width: 350px;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-blend-mode:overlay;
+    background-size: cover;
+    background-position: center;
+    padding: 10px;
+    transition: width .3s cubic-bezier(.17,.67,.33,.93), height .3s cubic-bezier(.17,.67,.33,.93)
+    , background-color .3s cubic-bezier(.17,.67,.33,.93);
+    image-rendering:auto;
+    margin-bottom: 10px;
+}
+.audio-player:hover {
+    width: 390px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+button {
+    max-width: fit-content;
+    background-color: transparent;
+    border: none;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-right: 10px;
+}
+button > img {
+    height: 20px;
+    filter: invert();
+}
+button > img:hover {
+    opacity: 50%;
+}
+.audio-controls {
+    display: flex;
+}
+
+.progress-bar {
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 100%;
+    height: 10px;
+    border-radius: 200px;
+    border: 1px solid white;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.progress-fill {
+    border-radius: 200px;
+    background-color: white;
+    height: 100%;
+    width: 0%;
+}
+
+.audio-time {
+    padding-left: 10px;
+}
+.audio-name {
+    text-align: left;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+.players {
+    display: inline-block;
+    max-width: fit-content;
+}
+
+.hideThis {
+    display: none;
+}
+
+.loadingImg {
+    filter: invert();
+    animation: rotatingLol 1s infinite linear;
+}
+
+.LoadingScreen {
+    display: flex;
+    max-width: fit-content;
+    height: 100%;
+    margin: auto;
+}
+
+@keyframes rotatingLol {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
