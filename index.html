@@ -1,21 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="CoreCat">
+        <meta property="og:description" content="Core5570R's Personal GitHub Page.">
+        <meta property="og:footer" content="Literally, awesome">
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black" />
+        <meta property="og:color" content="#7289DA">
+        <meta property="og:image" content="https://raw.githubusercontent.com/corecathx/corecathx.github.io/main/assets/CoreDev.png">
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>CoreCat</title>
+        <link rel="icon" type="image/x-icon" href="./assets/CoreDev.png">
         <style>
             @font-face {
                 font-family: JetBrains;
-                src: url("assets/fonts/JetBrains.ttf");
+                src: url("./assets/fonts/JetBrains.ttf");
             }
             * {
                 box-sizing: border-box;
                 font-family: JetBrains;
             }
+
+            .icon-small {
+                height: 20px;
+                vertical-align: middle;
+            }
+
+            .panel-social-icons {
+                gap: 10px;
+            }
+
+            .panel-social-icon-box {
+                width: max-content;
+                display: flex;
+                border-radius: 2px;
+                border: 1px rgb(66, 66, 66) solid;
+                padding: 2px 8px;
+                opacity: 0.6;
+            }
+
+            .panel-social-icon-box:hover {
+                opacity: 1;
+            }
+
+            .panel-social-icon {
+                width: 20px;
+                filter: invert();
+                margin: auto;
+                box-sizing: border-box;
+            }
+
+            .flex {
+                display: flex;
+            }
+
+            .content-child {
+                flex:1;
+                width: 100%;
+            }
+
             .outlined {
                 border-bottom: 1px rgb(43, 43, 43) solid;
             }
+
+            .outlined-left {
+                border-left: 1px rgb(43, 43, 43) solid;
+            }
+            
+            .vs-tab-button {
+                font-size: 0.85em;
+                padding: 8px 10px;
+                color: rgb(175, 175, 175);
+                text-decoration: none;
+            }
+
+            .vs-tab-button.selected {
+                border-bottom: 1px rgb(0, 120, 212) solid;
+            }
+
+            .vs-tab-button:hover {
+                color: white;
+            }
+
             .vs-button {
                 font-size: 0.85em;
                 border-radius: 2px;
@@ -28,12 +94,32 @@
             .vs-button:hover {
                 background-color: rgb(2, 110, 193);
             }
+
+            .safe-margin {
+                margin: 0 auto;
+                max-width: 1200px;
+            }
+
+            .safe-margin-content {
+                margin: 0 auto;
+                width: 80%;
+                max-width: 1200px;
+            }
+
             body, html {
-                background-color: rgb(24, 24, 24);
+                background-color: rgb(31, 31, 31);
                 margin: 0;
                 padding: 0;
                 color: #dcdcdc;
                 font-size: 14px;
+            }
+
+            p {
+                font-size: 0.95em;
+            }
+
+            #tab-menu {
+                padding-left: 50px;
             }
 
             #navbar {
@@ -41,7 +127,7 @@
                 padding: 10px 20px;
                 margin: 0 auto;
                 max-width: 1200px;
-                background-color: rgb(24, 24, 24);
+                background-color: rgb(31, 31, 31);
             }
 
             #icon-group {
@@ -68,13 +154,12 @@
             #header {
                 display: flex;
                 align-items: center;
-                margin: 20px auto;
-                padding: 10px 20px;
-                background-color: rgb(24, 24, 24);
-                max-width: 1200px;
+                padding: 20px 20px;
+                margin-bottom: 20px;
+                background-color: rgb(31, 31, 31);
             }
 
-            #header img {
+            #header-pfp {
                 border-radius: 50%;
                 width: 120px;
                 height: 120px;
@@ -83,8 +168,12 @@
                 transition: transform 0.2s ease-out;
             }
 
-            #header img:hover {
+            #header-pfp:hover {
                 transform: scale(1.1);
+            }
+
+            #header-pfp:active {
+                transform: scale(1.2);
             }
 
             #header-text-group {
@@ -92,17 +181,91 @@
             }
 
             #header-name {
-                font-size: 1.6em;
+                font-size: 1.8em;
+                margin-top: 0px;
                 margin-bottom: 5px;
                 color: #62b5e5;
             }
 
-            #description {
+            #header-description {
                 font-size: 1em;
                 line-height: 1.5;
             }
 
+            #content-about-title {
+                padding-bottom: 10px;
+            }
+
+            #panel-right {
+                padding: 0 20px;
+                width: 200px;
+                border-left: 1px rgb(43, 43, 43) solid;
+            }
+
+            #header-button-group {
+                gap: 10px;
+            }
+
+            #inner-content {
+                display: flex;
+            }
+
+            #footer {
+                padding: 10px 0;
+                margin: 0 auto;
+                max-width: 1200px;
+                text-align: center;
+                font-size: 0.7em;
+                border-top: 1px rgb(43, 43, 43) solid;
+            }
+
+            #menu-group {
+                gap: 10px;
+            }
+
             @media (max-width: 768px) {
+                #content-about-title {
+                    font-size: 1.9em;
+                    padding-bottom: 10px;
+                }
+
+                #content-about-desc {
+                    font-size: 0.9em;
+                }
+
+                #inner-content {
+                    flex-direction: column;
+                }
+                #panel-right {
+                    width: 100%;
+                    border-left: none;
+                    border-top: 1px rgb(43, 43, 43) solid;
+                    padding-bottom: 20px;
+                }
+                #tab-menu {
+                    margin-left: auto;
+                    margin-right: auto;
+                    padding-left: 0;
+                    width:100%;
+                }
+
+                #tab-menu * {
+                    margin-left: auto;
+                    margin-right: auto;
+                    padding-left: 0;
+                }
+
+                #menu-group {
+                    width: fit-content;
+                    gap: 20px;
+                }
+
+                #content {
+                    width: 90%;
+                    margin-left: auto;
+                    margin-right: auto;
+                    padding-left: 0;
+                }
                 #navbar {
                     margin: 0;
                 }
@@ -115,7 +278,7 @@
                     padding: 15px;
                 }
 
-                #header img {
+                #header-pfp {
                     width: 80px;
                     height: 80px;
                     margin-bottom: 5px;
@@ -126,12 +289,21 @@
                     font-size: 1.4em;
                 }
 
-                #description {
-                    font-size: 0.95em;
+                #header-description {
+                    font-size: 0.9em;
                 }
 
                 #icon-head {
-                    max-width: 35px;
+                    max-width: 20px;
+                }
+                #icon-name {
+                    font-size: 12px;
+                }
+
+                
+                #header-button-group {
+                    margin: 0 auto;
+                    width: fit-content;
                 }
             }
 
@@ -144,43 +316,107 @@
                     font-size: 1.3em;
                 }
 
-                #description {
+                #header-description {
                     font-size: 0.9em;
-                }
-
-                #icon-name {
-                    font-size: 12px;
-                }
-
-                #icon-head {
-                    max-width: 30px;
                 }
             }
         </style>
     </head>
     <body>
-        <div class="outlined" id="navbar">
+        <div class="outlined safe-margin" id="navbar">
             <div class='flex' id='icon-group'>
                 <img id="icon-head" src="./assets/CoreDev.png" alt="CoreCat Icon">
                 <p id="icon-name">corecat.hx</p>
             </div>
         </div>
-        <div class="flex" id="header">
-            <img src="./assets/corePFP.webp" alt="CoreCat Profile Picture">
+        <div class="flex safe-margin"  id="header">
+            <img id="header-pfp" src="./assets/corePFP.webp" alt="CoreCat Profile Picture">
             <div id="header-text-group">
                 <h1 id="header-name">CoreCat</h1>
-                <p id="description">
-                    Hello, I'm CoreCat, often known as Core5570R / Core.<br>
-                    I like to code, make music, and draw things sometimes.
+                <p id="header-username">@core5570r</p>
+                <p id="header-description">
+                    I make stuff, probably.
                 </p>
-                <div class="flex">
-                    <a class='vs-button'href="#hello">Hi</a>
-                    <a class='vs-button'href="#hello">woah, a cat</a>
-                    <a class='vs-button'href="#hello">Mewo</a>
+                <div class="flex" id="header-button-group">
+                    <a class='vs-button'href="https://youtu.be/AqjB8DGt85U">Install</a>
                 </div>
 
             </div>
         </div>
-        <h3 style="text-align: center;">⚠️ Under Construction! ⚠️</h3>
+        <div class="safe-margin outlined" id="tab-menu">
+            <div class="flex" id="menu-group">
+                <a class='vs-tab-button selected'href="#hello">About</a>
+                <a class='vs-tab-button'href="#hello">Socials</a>
+                <a class='vs-tab-button'href="#hello">Projects</a>
+            </div>
+        </div>
+        <br>
+        <div class="safe-margin-content outlined" id="content">
+            <div id="inner-content">
+                <div class="content-child" id="content-about">
+                    <h1 class="outlined" id="content-about-title">
+                        CoreCat 🐈
+                    </h1>
+                    <p id="content-about-desc">
+                        <!-- Main stuff about me -->
+                        <img width="100%" src="./assets/corethank.webp" alt="CoreCat Thank You Image"><br><br>
+                        Hello there, I'm CoreCat.<br>
+                        I'm also known as Core5570R on YouTube for making "OMFG Style" songs.<br><br>
+                        I enjoy composing music, developing software, drawing, and occasionally animating. Although<br>
+                        animating isn't really my thing, I find it interesting.<br><br>
+                        
+                        I'm not fluent at speaking English since my native language is Indonesia.
+                        
+                        <h1 class="outlined" id="content-about-title">Coding</h1>
+                        My primary programming language is <a href="https://haxe.org"><img class="icon-small" src="https://seeklogo.com/images/H/haxe-logo-5B1951A3D4-seeklogo.com.png"></a>, 
+                        but I also have a few experiences with other<br>languages as well, such as 
+                        <a href="https://java.com"><img class="icon-small" src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/181_Java_logo_logos-512.png"></a>,
+                        <a href="https://learn.microsoft.com/en-us/dotnet/csharp/"><img class="icon-small" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/C_Sharp_Logo_2023.svg/1200px-C_Sharp_Logo_2023.svg.png"></a>, 
+                        <span style="font-size: 0.6em; opacity: 0.4;">(I learned those languages at school, sometimes I forgot how their syntax looks like)</span><br><br>
+                        
+                        I used <a href="https://code.visualstudio.com/"><img class="icon-small" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/512px-Visual_Studio_Code_1.35_icon.svg.png"></a> as my Code Editor. <br><br>
+
+                        That's all for now i think lol, everything is TBA. <br><br>
+                        <img height="200px" src="https://media1.tenor.com/m/ue7Q8JmP_0MAAAAd/oiia-oiiaoiia.gif">
+                    </p>
+                </div>
+                <div id="panel-right">
+                    <h3>Socials</h3>
+                    <div id="panel-social">
+                        <div class="flex panel-social-icons">
+                            <a class="panel-social-icon-box" href="https://youtube.com/@core5570r">
+                                <img class="panel-social-icon" src="https://www.svgrepo.com/show/521936/youtube.svg" alt="YouTube">
+                            </a>
+                            <a class="panel-social-icon-box" href="https://x.com/@core5570r">
+                                <img class="panel-social-icon" src="https://freepnglogo.com/images/all_img/1691832278twitter-x-logo-png.png" alt="X / Twitter">
+                            </a>
+                            <a class="panel-social-icon-box" href="https://github.com/corecathx/">
+                                <img class="panel-social-icon" src="https://www.svgrepo.com/show/521688/github.svg" alt="GitHub">
+                            </a>
+                            <a class="panel-social-icon-box" href="https://open.spotify.com/intl-id/artist/5p0Zxa2eYgAr6iz04evSCL">
+                                <img class="panel-social-icon" src="https://www.svgrepo.com/show/512899/spotify-162.svg" alt="Spotify">
+                            </a>
+
+                            
+                        </div>
+
+                    </div>
+
+                    
+                </div>
+            </div>
+
+        </div>
+        <h4 style="text-align: center;">⚠️ Unfinished Page, stuff will change overtime. ⚠️</h4>
+        
+        <p id="footer">
+            Made with ❤️ by CoreCat.
+        </p>
     </body>
+    <script>
+        document.getElementById("header-pfp").onclick = () => {
+            const audio = new Audio(`./assets/core/meow${Math.floor(Math.random() * 4) + 1}.ogg`);
+            audio.play();
+        };
+    </script>
 </html>
