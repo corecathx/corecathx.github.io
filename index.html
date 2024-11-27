@@ -55,11 +55,6 @@
                 display: flex;
             }
 
-            .content-child {
-                flex:1;
-                width: 100%;
-            }
-
             .outlined {
                 border-bottom: 1px rgb(43, 43, 43) solid;
             }
@@ -105,6 +100,12 @@
                 margin: 0 auto;
                 width: 80%;
                 max-width: 1200px;
+            }
+
+            .content-hide {
+                width: 0px;
+                opacity: 0;
+                height: 0px;
             }
 
             body, html {
@@ -201,6 +202,7 @@
                 padding: 0 20px;
                 width: 200px;
                 border-left: 1px rgb(43, 43, 43) solid;
+                transition: width 0.5s ease, height 0.5s ease;
             }
 
             #header-button-group {
@@ -224,7 +226,25 @@
                 gap: 10px;
             }
 
+            #content-about {
+                transition: width 0.5s ease, height 0.5s ease, opacity 0.2s ease;
+                width: 100%;
+                max-height: 100%;
+                opacity: 1;
+            }
+            #content-about.hidden {
+                width: 0;
+                height: 0;
+                opacity: 0;
+            }
             @media (max-width: 768px) {
+                #content-about.hidden {
+                    height: 0;
+                    opacity: 0;
+                }
+                .content-hide {
+                    height: 0;
+                }
                 #content-about-title {
                     font-size: 1.9em;
                     padding-bottom: 10px;
@@ -354,7 +374,7 @@
         <br>
         <div class="safe-margin-content outlined" id="content">
             <div id="inner-content">
-                <div class="content-child" id="content-about">
+                <div id="content-about">
                     <h1 class="outlined" id="content-about-title">
                         CoreCat 🐈
                     </h1>
@@ -408,13 +428,35 @@
             </div>
 
         </div>
-        <h4 style="text-align: center;">⚠️ Unfinished Page, stuff will change overtime. ⚠️</h4>
+        <h4 style="text-align: center;">⚠️ Unfinished Page. ⚠️</h4>
         
         <p id="footer">
             Made with ❤️ by CoreCat.
         </p>
     </body>
     <script>
+        let activeButton = 0;
+        document.querySelectorAll(".vs-tab-button").forEach((button, index) => {
+            button.onclick = () => {
+                if (activeButton != index) {
+                    document.querySelectorAll(".vs-tab-button").forEach((b,i) => {
+                        b.classList.remove("selected");
+                    });
+                    button.classList.add("selected");
+                    activeButton = index;
+
+                    console.log(activeButton);
+                    switch (activeButton) {
+                        case 0:
+                            document.getElementById("content-about").classList.remove("hidden");
+                            break;
+                        case 1: 
+                            document.getElementById("content-about").classList.add("hidden");
+                            break;
+                    }
+                }
+            }
+        });
         document.getElementById("header-pfp").onclick = () => {
             const audio = new Audio(`./assets/core/meow${Math.floor(Math.random() * 4) + 1}.ogg`);
             audio.play();
