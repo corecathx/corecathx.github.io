@@ -28,6 +28,10 @@
             }
 
             .panel-social-icons {
+                display: flex;
+                width: 100%;
+                flex-wrap: wrap;
+                flex:1;
                 gap: 10px;
             }
 
@@ -36,8 +40,11 @@
                 display: flex;
                 border-radius: 2px;
                 border: 1px rgb(66, 66, 66) solid;
-                padding: 2px 8px;
+                padding: 5px 10px;
                 opacity: 0.6;
+                text-decoration: none;
+                gap: 10px;
+                color:white;
             }
 
             .panel-social-icon-box:hover {
@@ -107,6 +114,26 @@
                 opacity: 0;
                 height: 0px;
             }
+            .panel-social-icon-description {
+                margin: 0;
+
+            }
+            .panel-social-icon-description.hidden {
+                display: none;
+            }
+
+            .version-text {
+                color: white;
+                background-color: rgb(48, 48, 48);
+                font-size: 0.4em;
+                padding: 4px 8px;
+                margin: auto 0px;
+                margin-left: 10px;
+                line-height: 1;
+                display: inline-block;
+                border-radius: 4px;
+            }
+
 
             body, html {
                 background-color: rgb(31, 31, 31);
@@ -187,6 +214,8 @@
                 margin-top: 0px;
                 margin-bottom: 5px;
                 color: #62b5e5;
+                display: inline-flex;
+                align-items: center;
             }
 
             #header-description {
@@ -200,9 +229,10 @@
 
             #panel-right {
                 padding: 0 20px;
-                width: 200px;
-                border-left: 1px rgb(43, 43, 43) solid;
                 transition: width 0.5s ease, height 0.5s ease;
+            }
+            #panel-right.bordered {
+                border-left: 1px rgb(43, 43, 43) solid;
             }
 
             #header-button-group {
@@ -211,6 +241,7 @@
 
             #inner-content {
                 display: flex;
+                flex:1;
             }
 
             #footer {
@@ -237,6 +268,31 @@
                 height: 0;
                 opacity: 0;
             }
+
+            #content-projects {
+                transition: width 0.5s ease, height 0.5s ease, opacity 0.2s ease;
+                width: 100%;
+                max-height: 100%;
+                opacity: 1;
+            }
+            #content-projects.hidden {
+                width: 0;
+                height: 0;
+                opacity: 0;
+            }
+
+            #panel-social {
+                width: 200px;
+            }
+
+            #panel-social.active {
+                width: 100%;
+            }
+
+            #content-about-desc {
+                text-align: justify;
+            }
+            
             @media (max-width: 768px) {
                 #content-about.hidden {
                     height: 0;
@@ -254,11 +310,21 @@
                     font-size: 0.9em;
                 }
 
+                #panel-right.bordered {
+                    border-left: none;
+                }
+
+                #panel-social {
+                    width: 100%;
+                }
+            
                 #inner-content {
                     flex-direction: column;
                 }
                 #panel-right {
-                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    flex:1;
                     border-left: none;
                     border-top: 1px rgb(43, 43, 43) solid;
                     padding-bottom: 20px;
@@ -273,7 +339,7 @@
                 #tab-menu * {
                     margin-left: auto;
                     margin-right: auto;
-                    padding-left: 0;
+                    padding-left: 10;
                 }
 
                 #menu-group {
@@ -353,7 +419,7 @@
         <div class="flex safe-margin"  id="header">
             <img id="header-pfp" src="./assets/corePFP.webp" alt="CoreCat Profile Picture">
             <div id="header-text-group">
-                <h1 id="header-name">CoreCat</h1>
+                <h1 id="header-name">CoreCat <span class="version-text">v16.2.4</span></h1>
                 <p id="header-username">@core5570r</p>
                 <p id="header-description">
                     I make stuff, probably.
@@ -391,8 +457,8 @@
                         <h1 class="outlined" id="content-about-title">Coding</h1>
                         My primary programming language is <a href="https://haxe.org"><img class="icon-small" src="https://seeklogo.com/images/H/haxe-logo-5B1951A3D4-seeklogo.com.png"></a>, 
                         but I also have a few experiences with other<br>languages as well, such as 
-                        <a href="https://java.com"><img class="icon-small" src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/181_Java_logo_logos-512.png"></a>,
-                        <a href="https://learn.microsoft.com/en-us/dotnet/csharp/"><img class="icon-small" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/C_Sharp_Logo_2023.svg/1200px-C_Sharp_Logo_2023.svg.png"></a>, 
+                        <a href="https://java.com"><img class="icon-small" src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/181_Java_logo_logos-512.png"></a>, and
+                        <a href="https://learn.microsoft.com/en-us/dotnet/csharp/"><img class="icon-small" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/C_Sharp_Logo_2023.svg/1200px-C_Sharp_Logo_2023.svg.png"></a>
                         <span style="font-size: 0.6em; opacity: 0.4;">(I learned those languages at school, sometimes I forgot how their syntax looks like)</span><br><br>
                         
                         I used <a href="https://code.visualstudio.com/"><img class="icon-small" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/512px-Visual_Studio_Code_1.35_icon.svg.png"></a> as my Code Editor. <br><br>
@@ -401,34 +467,50 @@
                         <img height="200px" src="https://media1.tenor.com/m/ue7Q8JmP_0MAAAAd/oiia-oiiaoiia.gif">
                     </p>
                 </div>
-                <div id="panel-right">
+                <div id="content-projects">
+                    <h1 class="outlined" id="content-about-title">
+                        Projects 📁
+                    </h1>
+                    <img width="100%" src="https://placehold.co/1280x720" alt="CoreCat Thank You Image"><br><br>
+                    This page is still being worked on, it won't take a while though (hopefully)
+                </div>
+                <div class="bordered" id="panel-right">
                     <h3>Socials</h3>
                     <div id="panel-social">
-                        <div class="flex panel-social-icons">
+                        <div class="panel-social-icons">
                             <a class="panel-social-icon-box" href="https://youtube.com/@core5570r">
                                 <img class="panel-social-icon" src="https://www.svgrepo.com/show/521936/youtube.svg" alt="YouTube">
+                                <p class="panel-social-icon-description">YouTube</p>
                             </a>
                             <a class="panel-social-icon-box" href="https://x.com/@core5570r">
                                 <img class="panel-social-icon" src="https://freepnglogo.com/images/all_img/1691832278twitter-x-logo-png.png" alt="X / Twitter">
+                                <p class="panel-social-icon-description">X</p>
                             </a>
                             <a class="panel-social-icon-box" href="https://github.com/corecathx/">
                                 <img class="panel-social-icon" src="https://www.svgrepo.com/show/521688/github.svg" alt="GitHub">
+                                <p class="panel-social-icon-description">GitHub</p>
                             </a>
                             <a class="panel-social-icon-box" href="https://open.spotify.com/intl-id/artist/5p0Zxa2eYgAr6iz04evSCL">
                                 <img class="panel-social-icon" src="https://www.svgrepo.com/show/512899/spotify-162.svg" alt="Spotify">
+                                <p class="panel-social-icon-description">Spotify</p>
                             </a>
-
+                            <a class="panel-social-icon-box" href="https://discord.com/users/694791036094119996">
+                                <img class="panel-social-icon" src="https://www.svgrepo.com/show/378411/discord-fill.svg" alt="Discord">
+                                <p class="panel-social-icon-description">Discord</p>
+                            </a>
                             
                         </div>
-
                     </div>
-
-                    
                 </div>
             </div>
 
         </div>
-        <h4 style="text-align: center;">⚠️ Unfinished Page. ⚠️</h4>
+        <h4 style="text-align: center;">
+            ⚠️ Unfinished Page. ⚠️<br>
+            <span style="color: gray; font-size: 0.7em;">
+                Last update: 2024-12-02 at 00:12
+            </span>
+        </h4>
         
         <p id="footer">
             Made with ❤️ by CoreCat.
@@ -436,6 +518,15 @@
     </body>
     <script>
         let activeButton = 0;
+        document.querySelectorAll("img").forEach((img, index)=>{
+            img.ondragstart = function() {
+                return false;
+            };
+        });
+        document.getElementById("content-projects").classList.add("hidden");
+        document.querySelectorAll(".panel-social-icon-description").forEach((icon,index) => {
+            icon.classList.add("hidden");
+        });
         document.querySelectorAll(".vs-tab-button").forEach((button, index) => {
             button.onclick = () => {
                 if (activeButton != index) {
@@ -448,15 +539,36 @@
                     console.log(activeButton);
                     switch (activeButton) {
                         case 0:
+                            document.querySelectorAll(".panel-social-icon-description").forEach((icon,index) => {
+                                icon.classList.add("hidden");
+                            });
                             document.getElementById("content-about").classList.remove("hidden");
+                            document.getElementById("panel-social").classList.add("active");
+                            document.getElementById("content-projects").classList.add("hidden");
+                            document.getElementById("panel-right").classList.add("bordered");
                             break;
                         case 1: 
+                            document.querySelectorAll(".panel-social-icon-description").forEach((icon,index) => {
+                                icon.classList.remove("hidden");
+                            });
+                            document.getElementById("content-about").classList.add("hidden");
+                            document.getElementById("panel-social").classList.add("active");
+                            document.getElementById("content-projects").classList.add("hidden");
+                            document.getElementById("panel-right").classList.remove("bordered");
+                            break;
+                        case 2:
+                            document.querySelectorAll(".panel-social-icon-description").forEach((icon,index) => {
+                                icon.classList.add("hidden");
+                            });
+                            document.getElementById("panel-right").classList.add("bordered");
+                            document.getElementById("content-projects").classList.remove("hidden");
                             document.getElementById("content-about").classList.add("hidden");
                             break;
                     }
                 }
             }
         });
+
         document.getElementById("header-pfp").onclick = () => {
             const audio = new Audio(`./assets/core/meow${Math.floor(Math.random() * 4) + 1}.ogg`);
             audio.play();
