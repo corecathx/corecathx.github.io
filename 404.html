@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CoreCat</title>
+        <style>
+            @font-face {
+                font-family: JetBrains;
+                src: url("./assets/fonts/JetBrains.ttf");
+                font-weight: normal;
+            }
+            * {
+                box-sizing: border-box;
+                font-family: JetBrains;
+                font-weight: normal;
+                font-style: normal;
+            }
+            
+            body, html {
+                background-color: rgb(31, 31, 31);
+                margin: 0;
+                padding: 0;
+                color: #dcdcdc;
+                font-size: 14px;
+            }
+            #coresplash {
+                width: 150px;
+                height: 150px;
+            }
+            #stuff {
+                width: fit-content;
+                display: flex;
+                gap: 20px;
+                margin: auto auto;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            #message {
+                margin: auto 0;
+            }
+            #messagehead {
+                font-size: 1.6em;
+                margin: 10px 0;
+                display: flex; align-items: center; justify-content: left;
+                gap: 10px;
+                text-align: left;
+            }
+            #messagetext {
+                margin: 0;
+                white-space: pre-wrap;
+                width: 400px;
+            }
+            #x {
+                width: 25px;
+                height: 25px;
+                fill: rgb(109, 41, 41);
+                stroke: rgb(109, 41, 41);
+            }
+
+            @media (max-width: 768px) {
+                #stuff {
+                    flex-direction: column;
+                }
+                #coresplash {
+                    margin: 0 auto;
+                }
+                #messagehead {
+                    width: fit-content;
+                    margin: 0 auto;
+                }
+                #messagetext {
+                    margin: 10px auto;
+                    text-align: center;
+                }
+            }
+        </style>
+        <link rel="icon" type="image/x-icon" href="./assets/CoreDev.png">
+    </head>
+    <body>
+        <div id="stuff">
+            <img id="coresplash" src="./assets/images/coresplash2.png" alt="">
+            <div id="message">
+                <h1 id="messagehead">
+                    <svg id="x" fill="#ff0000" width="800px" height="800px" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" stroke="#ff0000">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+                        <g id="SVGRepo_iconCarrier"> <title/> <g> <path d="M48,0A48,48,0,1,0,96,48,48.0512,48.0512,0,0,0,48,0Zm0,84A36,36,0,1,1,84,48,36.0393,36.0393,0,0,1,48,84Z"/> <path d="M64.2422,31.7578a5.9979,5.9979,0,0,0-8.4844,0L48,39.5156l-7.7578-7.7578a5.9994,5.9994,0,0,0-8.4844,8.4844L39.5156,48l-7.7578,7.7578a5.9994,5.9994,0,1,0,8.4844,8.4844L48,56.4844l7.7578,7.7578a5.9994,5.9994,0,0,0,8.4844-8.4844L56.4844,48l7.7578-7.7578A5.9979,5.9979,0,0,0,64.2422,31.7578Z"/> </g> </g>
+                    </svg>
+                    404: File not found!
+                </h1>
+                <p id="messagetext">
+                    &nbsp;
+                </p>
+            </div>
+
+        </div>
+    </body>
+
+    <script>
+        let messages = [
+            "Perhaps check the URL address?",
+            "I don't think you wanted to access " + window.location.toString() + ".",
+            "Looks like you got here by accident, don't worry, you can always press that \"Go back to previous page\" button.",
+            "But nobody came.",
+            "Get up, you can't stay here forever.",
+            "You're here by accident. Or are you trying to find easter eggs in " + window.location.hostname + "?",
+            "Trust me, there's really no other interesting stuffs in " + window.location.hostname + ".",
+        ];
+        let text = document.getElementById("messagetext");
+
+        function typer(message, speed) {
+            let i = 0;
+            text.innerHTML = "";
+            
+            let write = () => {
+                if (i < message.length) {
+                    text.innerHTML += message.charAt(i);
+                    let delay = speed;
+
+                    if (message.charAt(i) === "." || message.charAt(i) === ",")
+                        delay = speed * 20;
+
+                    i++;
+                    setTimeout(write, delay);
+                }
+            }
+            write();
+        }
+
+        function startTyping() {
+            let message = messages[Math.floor(Math.random() * messages.length)];
+            typer(message, 20);
+        }
+
+        setTimeout(startTyping, 100);
+
+    </script>
+</html>
