@@ -1,104 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>CoreCat</title>
-        <style>
-            @font-face {
-                font-family: JetBrains;
-                src: url("./assets/fonts/JetBrains.ttf");
-                font-weight: normal;
-            }
-            * {
-                box-sizing: border-box;
-                font-family: JetBrains;
-                font-weight: normal;
-                font-style: normal;
-            }
-            
-            body, html {
-                background-color: rgb(31, 31, 31);
-                margin: 0;
-                padding: 0;
-                color: #dcdcdc;
-                font-size: 14px;
-            }
-            #coresplash {
-                width: 150px;
-                height: 150px;
-            }
-            #stuff {
-                width: fit-content;
-                display: flex;
-                gap: 20px;
-                margin: auto auto;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-            }
-            #message {
-                margin: auto 0;
-            }
-            #messagehead {
-                font-size: 1.6em;
-                margin: 10px 0;
-                display: flex; align-items: center; justify-content: left;
-                gap: 10px;
-                text-align: left;
-            }
-            #messagetext {
-                margin: 0;
-                white-space: pre-wrap;
-                width: 400px;
-            }
-            #x {
-                width: 25px;
-                height: 25px;
-                fill: rgb(109, 41, 41);
-                stroke: rgb(109, 41, 41);
-            }
-
-            @media (max-width: 768px) {
-                #stuff {
-                    flex-direction: column;
-                }
-                #coresplash {
-                    margin: 0 auto;
-                }
-                #messagehead {
-                    width: fit-content;
-                    margin: 0 auto;
-                }
-                #messagetext {
-                    margin: 10px auto;
-                    text-align: center;
-                }
-            }
-        </style>
-        <link rel="icon" type="image/x-icon" href="./assets/CoreDev.png">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="shortcut icon" href="./images/core.svg" type="image/x-icon">
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+        <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     </head>
-    <body>
-        <div id="stuff">
-            <img id="coresplash" src="./assets/images/coresplash2.png" alt="">
-            <div id="message">
-                <h1 id="messagehead">
-                    <svg id="x" fill="#ff0000" width="800px" height="800px" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" stroke="#ff0000">
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"/>
-                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
-                        <g id="SVGRepo_iconCarrier"> <title/> <g> <path d="M48,0A48,48,0,1,0,96,48,48.0512,48.0512,0,0,0,48,0Zm0,84A36,36,0,1,1,84,48,36.0393,36.0393,0,0,1,48,84Z"/> <path d="M64.2422,31.7578a5.9979,5.9979,0,0,0-8.4844,0L48,39.5156l-7.7578-7.7578a5.9994,5.9994,0,0,0-8.4844,8.4844L39.5156,48l-7.7578,7.7578a5.9994,5.9994,0,1,0,8.4844,8.4844L48,56.4844l7.7578,7.7578a5.9994,5.9994,0,0,0,8.4844-8.4844L56.4844,48l7.7578-7.7578A5.9979,5.9979,0,0,0,64.2422,31.7578Z"/> </g> </g>
-                    </svg>
-                    404: File not found!
-                </h1>
-                <p id="messagetext">
-                    &nbsp;
-                </p>
-            </div>
 
+    <body class="flex items-center justify-center min-h-screen relative overflow-hidden">
+        <!-- Background Animation -->
+        <div class="absolute inset-0 -z-10 opacity-30 overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-[#0a0a0f]"></div>
+            <div class="absolute -top-1/4 -left-1/4 w-[150%] h-[150%] animate-rotate-blob">
+                <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-[var(--accent1)] rounded-full opacity-20 blur-3xl animate-pulse"></div>
+                <div class="absolute top-1/3 left-2/3 w-64 h-64 bg-[var(--accent2)] rounded-full opacity-20 blur-3xl animate-pulse animation-delay-2000"></div>
+            </div>
+        </div>
+
+        <!-- navbar -->
+        <nav class="glass-effect fixed w-full top-0 z-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <div class="flex items-center space-x-3 glass-effect rounded-xl px-4 py-2">
+                        <img src="./images/core.svg" class="size-8" />
+                        <h1 class="text-xl font-bold gradient-text">CoreCat</h1>
+                    </div>
+
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a href="/" class="hover:text-[var(--accent2)] transition-colors duration-300">Home</a>
+                        <a href="/#projects" class="hover:text-[var(--accent2)] transition-colors duration-300">Projects</a>
+                        <a href="/#socials" class="hover:text-[var(--accent2)] transition-colors duration-300">Socials</a>
+                        <a href="https://discord.com/users/694791036094119996"
+                            class="bg-gradient-to-r from-[var(--accent1)] to-[var(--accent2)] text-white px-6 py-2 rounded-full hover:opacity-90 transition-opacity">
+                            Contact
+                        </a>
+                    </div>
+
+                    <!-- hamburg -->
+                    <button id="menu-toggle" class="md:hidden p-2 rounded-lg hover:bg-white/10">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- navbar mobile dropdown -->
+        <div id="mobile-menu"
+            class="md:hidden opacity-0 fixed top-16 w-full bg-[#0a0a0f] shadow-xl transition-all duration-300 transform origin-top -translate-y-full">
+            <div class="px-4 pt-2 pb-4 space-y-4">
+                <a href="/" class="block px-4 py-3 rounded-lg hover:bg-white/5">Home</a>
+                <a href="/#projects" class="block px-4 py-3 rounded-lg hover:bg-white/5">Projects</a>
+                <a href="/#socials" class="block px-4 py-3 rounded-lg hover:bg-white/5">Socials</a>
+                <a href="https://discord.com/users/694791036094119996"
+                    class="block text-center bg-gradient-to-r from-[var(--accent1)] to-[var(--accent2)] text-white px-6 py-3 rounded-full">
+                    Contact
+                </a>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="text-center">
+            <h1 class="text-6xl font-bold gradient-text w-fit mx-auto">404</h1>
+            <p id="messagetext" class="text-xl mt-4 px-6 max-w-xl"></p>
+            <a href="/" class="mt-6 inline-block px-6 py-3 bg-gradient-to-r from-[var(--accent1)] to-[var(--accent2)] text-white rounded-full shadow-lg hover:opacity-90 transition-opacity">
+                Return Home
+            </a>
         </div>
     </body>
 
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="./script.js"></script>
     <script>
         let messages = [
             "Perhaps check the URL address?",
