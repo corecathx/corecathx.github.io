@@ -62,7 +62,7 @@
 
         <!-- navbar mobile dropdown -->
         <div id="mobile-menu"
-            class="md:hidden opacity-0 fixed top-16 w-full bg-[#0a0a0f] shadow-xl transition-all duration-300 transform origin-top -translate-y-full">
+            class="z-50 md:hidden opacity-0 pointer-events-none fixed top-16 w-full glass-effect shadow-xl transition-all duration-300 transform origin-top -translate-y-full">
             <div class="px-4 pt-2 pb-4 space-y-4">
                 <a href="#" class="block px-4 py-3 rounded-lg hover:bg-white/5">Home</a>
                 <a href="#projects" class="block px-4 py-3 rounded-lg hover:bg-white/5">Projects</a>
@@ -77,7 +77,7 @@
         <!-- actual content -->
         <section class="min-h-screen flex items-center pt-32 pb-20 px-4 sm:px-6 lg:px-8">
             <div class="max-w-7xl mx-auto text-center">
-                <div class="mb-8 relative inline-block flex items-center"  data-aos="fade-up">
+                <div class="mx-auto mb-8 relative inline-block flex items-center w-fit"  data-aos="fade-up">
                     <div
                         class="absolute inset-0 bg-gradient-to-r from-[var(--accent1)] to-[var(--accent2)] blur-3xl opacity-30 rounded-full">
                     </div>
@@ -88,9 +88,9 @@
                     </h1>
                 </div>
 
-                <p class="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-12" data-aos="fade-up" data-aos-delay="100">
-                    I'm a <span class="gradient-text">developer</span> and a <span class="gradient-text">Glitch Hop</span>
-                    composer.
+                <p class="items-center text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-12" data-aos="fade-up" data-aos-delay="100">
+                    I'm a <span class="gradient-text">developer</span> and a <span class="gradient-text">Glitch Hop</span> composer.<br>
+                    Mainly uses <span class="gradient-text">Haxe <img class="inline-block size-6 invert-[0.8]" src="https://www.svgrepo.com/show/341899/haxe.svg"></span>, but I'm interested in learning other languages.
                 </p>
 
                 <div class="flex flex-col sm:flex-row justify-center gap-4" data-aos="fade-up" data-aos-delay="200">
@@ -121,7 +121,7 @@
                 </h2>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="glass-effect rounded-lg p-6 hover-scale group relative overflow-hidden transition-all duration-300 shadow-none hover:shadow-[0_0_20px_5px_rgba(0,96,255,0.3)]" data-aos="fade-up">
+                    <div class="glass-effect rounded-lg p-6 hover:scale-[1.1] relative overflow-hidden transition-all duration-300 shadow-none hover:shadow-[0_0_20px_5px_rgba(0,96,255,0.3)]" data-aos="fade-up">
                         <img src="./images/projects/linetapper.png" class="w-full h-48 object-cover rounded-lg mb-4" />
                         <h3 class="text-2xl font-bold mb-4">LineTapper</h3>
                         <p class="text-gray-400 mb-4">A rhythm game made by CoreCat using HaxeFlixel.</p>
@@ -132,7 +132,7 @@
                         <img src="https://images.gamebanana.com/img/ss/mods/658599b87b960.jpg" class="w-full h-48 object-cover rounded-lg mb-4" />
                         <h3 class="text-2xl font-bold mb-4">FNF CDEV Engine</h3>
                         <p class="text-gray-400 mb-4">CDEV Engine is a Friday Night Funkin' Engine intended to fix issues with the base game while also adding lot of features.</p>
-                        <a href="https://github.com/corecathx/LineTapper" class="text-[var(--accent1)] hover:text-[var(--accent2)] transition-colors">View Project →</a>
+                        <a href="https://github.com/corecathx/FNF-CDEV-Engine" class="text-[var(--accent1)] hover:text-[var(--accent2)] transition-colors">View Project →</a>
                     </div>
 
                     <div class="glass-effect rounded-lg p-6 hover-scale group relative overflow-hidden transition-all duration-300 shadow-none hover:shadow-[0_0_20px_5px_rgba(0,96,255,0.3)]" data-aos="fade-up">
@@ -141,6 +141,23 @@
                         <p class="text-gray-400 mb-4">RSL is a scripting language I made for fun using Haxe. Don't expect much from this.</p>
                         <a href="https://github.com/corecathx/rsl" class="text-[var(--accent1)] hover:text-[var(--accent2)] transition-colors">View Project →</a>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="socials" class="py-20 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-5xl md:text-6xl font-bold text-center w-fit mx-auto mb-12 gradient-text" data-aos="fade-up">
+                    GitHub Stats
+                    <span class="block mt-2 font-normal text-xl md:text-2xl">
+                        See how I'm doing on GitHub.
+                    </span>
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-center justify-center">
+                    <img class="mx-auto" src="https://github-readme-stats.vercel.app/api?username=corecathx&theme=react&show_icons=true&hide_border=false&count_private=true" data-aos="fade-up">
+                    <img class="mx-auto" src="https://github-readme-streak-stats.herokuapp.com/?user=corecathx&theme=react&hide_border=false" data-aos="fade-up" data-aos-delay="100">
+                    <img class="mx-auto" src="https://github-readme-stats.vercel.app/api/top-langs/?username=corecathx&theme=react&show_icons=true&hide_border=false&layout=compact" data-aos="fade-up" data-aos-delay="2 00">
                 </div>
             </div>
         </section>

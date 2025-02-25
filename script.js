@@ -11,6 +11,7 @@ menuToggle.addEventListener('click', () => {
     mobileMenu.classList.toggle('-translate-y-full');
     mobileMenu.classList.toggle('translate-y-0');
     mobileMenu.classList.toggle("opacity-0");
+    mobileMenu.classList.toggle("pointer-events-none")
 });
 
 document.addEventListener('click', (e) => {
@@ -18,6 +19,7 @@ document.addEventListener('click', (e) => {
         mobileMenu.classList.add('-translate-y-full');
         mobileMenu.classList.remove('translate-y-0');
         mobileMenu.classList.add("opacity-0");
+        mobileMenu.classList.add("pointer-events-none");
     }
 });
 
