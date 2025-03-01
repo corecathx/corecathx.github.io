@@ -6,7 +6,7 @@ on:
       - main
 
 permissions:
-  contents: read-write
+  contents: write  # Correct permission for deploying
 
 jobs:
   build:
@@ -23,13 +23,18 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci  # Faster & more reliable than `npm install`
 
       - name: Build project
         run: npm run build
+
+      - name: Disable Jekyll
+        run: touch dist/.nojekyll  # Prevent GitHub Pages from using Jekyll
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
           folder: dist
+          clean: true  # Removes old files before deployment
+          verbose: true  # Adds logs for easier debugging
