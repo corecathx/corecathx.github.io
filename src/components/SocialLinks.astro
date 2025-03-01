@@ -1,0 +1,18 @@
+---
+const socials = [
+  { icon: "fab fa-github", link: "https://github.com/corecathx" },
+  { icon: "fab fa-x-twitter", link: "https://x.com/core5570r" },
+  { icon: "fab fa-youtube", link: "https://youtube.com/@core5570r" },
+  { icon: "fab fa-discord", link: "https://discord.com/users/694791036094119996" },
+  { icon: "fab fa-spotify", link: "https://open.spotify.com/intl-id/artist/5p0Zxa2eYgAr6iz04evSCL" },
+];
+---
+
+<div class="flex justify-center space-x-8">
+  {socials.map((social, index) => (
+    <a href={social.link} class="text-gray-400 hover:text-[var(--accent2)] transition-colors" 
+      data-aos="fade-up" data-aos-delay={index * 100}>
+      <i class={social.icon + " text-4xl"}></i>
+    </a>
+  ))}
+</div>

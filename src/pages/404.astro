@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+import coreIcon from "../assets/images/core.svg";
+import projects from "../data/projects.ts";
+import ProjectCard from "../components/ProjectCard.astro";
+import SocialLinks from "../components/SocialLinks.astro";
+
+import "../styles/global.css";
+---
+
+<Layout title="404" class="">
+    <div class="text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <h1 class="text-6xl font-bold gradient-text w-fit mx-auto">404</h1>
+        <p id="messagetext" class="text-xl mt-4 px-6 max-w-xl"></p>
+        <a href="/" class="mt-6 inline-block px-6 py-3 bg-gradient-to-r from-[var(--accent1)] to-[var(--accent2)] text-white rounded-full shadow-lg hover:opacity-90 transition-opacity">
+            Return Home
+        </a>
+    </div>
+</Layout>
+
+<script>
+    let messages = [
+        "Perhaps check the URL address?",
+        "I don't think you wanted to access " + window.location.toString() + ".",
+        "Looks like you got here by accident, don't worry, you can always press that \"Go back to previous page\" button.",
+        "But nobody came.",
+        "Get up, you can't stay here forever.",
+        "You're here by accident. Or are you trying to find easter eggs in " + window.location.hostname + "?",
+        "Trust me, there's really no other interesting stuffs in " + window.location.hostname + ".",
+    ];
+    let text = document.getElementById("messagetext");
+
+    function typer(message, speed) {
+        let i = 0;
+        text.innerHTML = "";
+        
+        let write = () => {
+            if (i < message.length) {
+                text.innerHTML += message.charAt(i);
+                let delay = speed;
+
+                if (message.charAt(i) === "." || message.charAt(i) === ",")
+                    delay = speed * 20;
+
+                i++;
+                setTimeout(write, delay);
+            }
+        }
+        write();
+    }
+
+    function startTyping() {
+        let message = messages[Math.floor(Math.random() * messages.length)];
+        typer(message, 20);
+    }
+
+    setTimeout(startTyping, 100);
+
+</script>
