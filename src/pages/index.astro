@@ -5,6 +5,18 @@ import projects from "../data/projects.ts";
 import ProjectCard from "../components/ProjectCard.astro";
 import SocialLinks from "../components/SocialLinks.astro";
 
+import meow1 from "../assets/core/meow1.ogg?url";
+import meow2 from "../assets/core/meow2.ogg?url";
+import meow3 from "../assets/core/meow3.ogg?url";
+import meow4 from "../assets/core/meow4.ogg?url";
+
+const catSounds = [ 
+		meow1,
+        meow2,
+        meow3,
+		meow4
+];
+
 import "../styles/global.css";
 ---
 
@@ -63,3 +75,59 @@ import "../styles/global.css";
 		</div>
 	</section>
 </Layout>
+<script type="module" define:vars={{ catSounds }}>
+
+    let typed = '';
+    const emojis = ['🙀', '😺', '🐱', '😼', '😺']; 
+
+    document.addEventListener('keydown', (event) => {
+        typed += event.key.toLowerCase(); 
+        if (!"cat".startsWith(typed)) typed = '';
+
+        if (typed === 'cat') {
+            typed = '';
+            activateCatMode();
+        }
+    });
+
+	function activateCatMode() {
+		const overlay = document.createElement('div');
+		overlay.style.position = 'fixed';
+		overlay.style.top = 0;
+		overlay.style.left = 0;
+		overlay.style.width = '100vw';
+		overlay.style.height = '100vh';
+		overlay.style.background = 'rgba(0, 0, 0, 0.8)';
+		overlay.style.display = 'flex';
+		overlay.style.alignItems = 'center';
+		overlay.style.justifyContent = 'center';
+		overlay.style.zIndex = 9999;
+		overlay.style.transition = 'opacity 0.2s, backdrop-filter 0.2s';
+		overlay.style.backdropFilter = 'blur(0px)';
+		document.body.appendChild(overlay);
+
+		const catEmoji = document.createElement('div');
+		catEmoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+		catEmoji.style.fontSize = '10rem';
+		catEmoji.style.opacity = 0;
+		catEmoji.style.transition = 'opacity 0.2s';
+		overlay.appendChild(catEmoji);
+
+		const audio = new Audio(catSounds[Math.floor(Math.random() * catSounds.length)]);
+		audio.volume = 0.7;
+		audio.play();
+
+		// Apply blur instead of zoom
+		setTimeout(() => {
+			overlay.style.backdropFilter = 'blur(10px)';
+			catEmoji.style.opacity = 1;
+		}, 1);
+
+		audio.onended = () => {
+			overlay.style.opacity = 0;
+			overlay.style.backdropFilter = 'blur(0px)';
+			setTimeout(() => overlay.remove(), 500);
+		};
+	}
+
+</script>

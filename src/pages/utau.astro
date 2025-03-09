@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+import "../styles/global.css";
+---
+
+<Layout title="UTAU VB v1" class="">
+    <div class="flex items-center justify-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 space-x-6">
+        <img src="/images/corecat-v1-illust.png" alt="CoreCat Illust." class="h-80 object-cover shadow-lg" />
+        <div class="text-center">
+            <h1 class="text-4xl font-bold gradient-text">CoreCat CV UTAU</h1>
+            <a href="/downloads/utau_v1.zip" download class="mt-6 inline-block px-6 py-3 bg-gradient-to-r from-[var(--accent1)] to-[var(--accent2)] text-white rounded-full shadow-lg hover:opacity-90 transition-opacity">
+                Download
+            </a>
+        </div>
+    </div>
+</Layout>

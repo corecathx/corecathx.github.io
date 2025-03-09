@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 @import "tailwindcss";
-
+@import url("https://fonts.googleapis.com/css?family=JetBrains Mono");
 :root {
     --background: #0a0a0f;
     --foreground: #f0f4ff;
@@ -23,6 +23,10 @@ body {
     overflow-x: hidden;
 }
 
+code {
+    font-family: "JetBrains Mono", monospace;
+}
+
 .gradient-text {
     background: var(--gradient);
     -webkit-background-clip: text;
@@ -34,6 +38,13 @@ body {
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-effect-nb {
+    background: rgba(15, 15, 25, 0.5);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .hover-scale {
@@ -87,7 +98,7 @@ body {
 }
 
 .animate-pulse {
-    animation: pulse 6s ease-in-out infinite;
+    animation: pulse 10s ease-in-out infinite;
 }
 
 .animation-delay-2000 {
