@@ -1,9 +1,14 @@
+---
+import ViewCount from "./ViewCount.astro";
+
+---
 <footer class="py-10 px-4 sm:px-6 lg:px-8 border-t border-gray-800 bg-[rgb(10,10,10)]/10 backdrop-blur-lg w-full">
     <div class="max-w-7xl mx-auto text-center">
         <p class="text-gray-400 flex flex-col items-center gap-1 text-center w-fit mx-auto">
             <span class="flex items-center gap-1">
                 Made with <img class="size-4 invert-[0.8]" src="https://www.svgrepo.com/show/532473/heart.svg"> by CoreCat.
             </span>
+            <ViewCount />
             <!--<span class="text-gray-600 text-[0.8rem]">Powered by <a href="https://astro.build/" class="gradient-text">Astro</a> 🚀.</span>-->
         </p>        
     </div>
