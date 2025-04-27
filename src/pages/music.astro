@@ -109,17 +109,15 @@ import audioData from "../data/audio.ts";
         const durationDisplay = document.getElementById("duration");
         const playlistItems = document.querySelectorAll("[data-index]");
 
-        let currentTrackIndex = 0; // Keep track of the current song
-        let isPlaying = false; // Track if the music is playing
+        let currentTrackIndex = 0;
+        let isPlaying = false;
 
-        // Helper function to format time as mm:ss
         const formatTime = (seconds) => {
             const minutes = Math.floor(seconds / 60);
             const remainingSeconds = Math.floor(seconds % 60);
             return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
         };
 
-        // Function to load a track by its index
         const loadTrack = (index) => {
             const trackElement = document.querySelector(`[data-index="${index}"]`);
             if (!trackElement) {
@@ -127,78 +125,64 @@ import audioData from "../data/audio.ts";
                 return;
             }
 
-            // Update the audio player source
             audioPlayer.src = trackElement.dataset.src;
 
-            // Update the "Now Playing" section
             document.getElementById("now-playing-img").src = trackElement.dataset.image || "https://placehold.co/200";
             document.getElementById("now-playing-name").textContent = trackElement.dataset.name;
             document.getElementById("now-playing-artist").textContent = trackElement.dataset.artist || "";
             document.getElementById("now-playing-genre").textContent = trackElement.dataset.genre;
 
-            // Highlight the active track in the playlist
             playlistItems.forEach(item => item.classList.remove("bg-white/10"));
             trackElement.classList.add("bg-white/10");
 
-            // Update the duration display once the track is loaded
             audioPlayer.addEventListener("loadedmetadata", () => {
                 durationDisplay.textContent = formatTime(audioPlayer.duration);
             }, { once: true });
 
-            // If the player was playing, continue playing the new track
             if (isPlaying) audioPlayer.play();
         };
 
-        // Toggle play/pause
         const togglePlay = () => {
             isPlaying = !isPlaying;
             isPlaying ? audioPlayer.play() : audioPlayer.pause();
             playPauseBtn.innerHTML = isPlaying ? "❚❚" : "▶";
         };
 
-        // Handle progress bar clicks
         progressBar.addEventListener("click", (e) => {
             const rect = progressBar.getBoundingClientRect();
             const clickPosition = (e.clientX - rect.left) / rect.width;
             audioPlayer.currentTime = clickPosition * audioPlayer.duration;
         });
 
-        // Update the progress bar as the track plays
         audioPlayer.addEventListener("timeupdate", () => {
             const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
             currentProgress.style.width = `${progress}%`;
             currentTimeDisplay.textContent = formatTime(audioPlayer.currentTime);
         });
 
-        // Adjust volume
         volumeControl.addEventListener("input", (e) => {
             audioPlayer.volume = e.target.value;
         });
 
-        // Go to the previous track
         prevBtn.addEventListener("click", () => {
             currentTrackIndex = (currentTrackIndex - 1 + playlistItems.length) % playlistItems.length;
             loadTrack(currentTrackIndex);
         });
 
-        // Go to the next track
         nextBtn.addEventListener("click", () => {
             currentTrackIndex = (currentTrackIndex + 1) % playlistItems.length;
             loadTrack(currentTrackIndex);
         });
 
-        // Handle playlist item clicks
         playlistItems.forEach((item, index) => {
             item.addEventListener("click", () => loadTrack(index));
         });
 
-        // Automatically play the next track when the current one ends
         audioPlayer.addEventListener("ended", () => {
             nextBtn.click();
             if (isPlaying) audioPlayer.play();
         });
 
-        // Start with the first track
         loadTrack(0);
         playPauseBtn.addEventListener("click", togglePlay);
     });

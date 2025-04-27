@@ -4,6 +4,7 @@ import coreIcon from "../assets/images/core.svg";
 import Background from "../components/Background.astro";
 import Footer from "../components/Footer.astro";
 import MetaLinks from "../components/MetaLinks.astro";
+import CookieOverlay from "../components/Cookie.astro";
 
 const classT = Astro.props.class || "";
 const description = Astro.props.description || "Developer, Composer, and Artist";
@@ -33,6 +34,9 @@ const image = Astro.props.image || "https://raw.githubusercontent.com/corecathx/
 		</main>
 
 		<Footer />
+
+		<CookieOverlay />
+
 	</body>
 	<script src="/js/aos.js" type="text/javascript"></script>
 	<script>
