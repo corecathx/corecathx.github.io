@@ -30,6 +30,7 @@ async function updatePageView() {
     }
 
     document.getElementById("page-views").innerText = (await getDoc(ref)).data().count;
+    document.getElementById('wawascript').remove();
 }
 
 updatePageView();
