@@ -4,15 +4,19 @@ import "../styles/global.css";
 <div id="cookie-overlay" class="fixed inset-0 bg-black/50 z-50 backdrop-blur-sm flex items-center justify-center hidden transition-all duration-300 ease-in-out opacity-0">
     <div id="cookie-box" class="glass-effect p-6 rounded-lg shadow-lg text-center max-w-md w-full transition-transform duration-300 ease-in-out scale-90">
         <h2 class="gradient-text font-bold text-3xl mb-2">Hey there!</h2>
-        <p class=" text-gray-200 mb-2">
-            This site uses cookies! By pressing the "Accept" button, you agree to it's use of cookies.
+        <p class="text-gray-200 mb-2 text-left text-md leading-relaxed">
+            This site uses a cookie to track view counts, no personal info involved.
+            <br><br>
+            There's also a Spotify embed on the page, which might set some third-party cookies. By continuing, you agreed to 
+            <a href="https://www.spotify.com/us/legal/privacy-policy/" class="gradient-text">Spotify's Privacy Notice</a>.
         </p>
+        
         <div class="flex justify-center gap-4">
             <button id="acc-butt" class="hover-scale inline-flex items-center bg-gradient-to-r from-[var(--accent1)] to-[var(--accent2)] text-white px-4 py-2 rounded-full text-base font-medium shadow-lg hover:shadow-xl transition-all">
-                Accept
+                Alright then
             </button>
             <button id="dec-butt" class="hover-scale inline-flex items-center border border-[var(--accent1)] text-[var(--accent1)] px-4 py-2 rounded-full text-base hover:bg-[var(--accent1)]/10 transition-colors">
-                Decline
+                More Info
             </button>
         </div>
     </div>
@@ -58,6 +62,7 @@ import "../styles/global.css";
             modal.classList.add('opacity-0');
             modal.classList.remove('opacity-100');
             setTimeout(() => {
+                window.location.href = '/privacy'
                 modal.classList.add('hidden');
             }, 300);
         });

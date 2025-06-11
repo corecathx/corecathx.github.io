@@ -21,5 +21,17 @@ export default [
         "RSL is a scripting language I made for fun using Haxe. Don't expect much from this.",
       link: "https://github.com/corecathx/rsl",
     },
+    {
+      title: "HXDC",
+      image: 'https://raw.githubusercontent.com/corecathx/hxdc/main/res/logo.png',
+      description: 'A Discord Client made with Haxe.',
+      link: "https://github.com/corecathx/hxdc",
+    },
+    {
+      title: "Hypertext Engine",
+      image: '/images/fnfhe.png',
+      description: "An FNF Engine made entirely in HTML, CSS, and JS.",
+      link: 'https://corecathx.github.io/projects/hypertext-engine/'
+    }
   ];
   

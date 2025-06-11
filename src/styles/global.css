@@ -55,6 +55,26 @@ code {
     transform: translateY(-3px);
 }
 
+.core-swing {
+    animation: sway 5s ease-in-out infinite;
+}
+.core-swing2 {
+    animation: sway 5s ease-in-out infinite 0.5s;
+}
+@keyframes sway {
+    0% {
+        transform: rotate(-5deg);
+    }
+
+    50% {
+        transform: rotate(5deg);
+    }
+
+    100% {
+        transform: rotate(-5deg);
+    }
+}
+
 @keyframes move-grid {
     from {
         background-position: 0 0;

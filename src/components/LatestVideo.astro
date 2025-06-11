@@ -1,0 +1,28 @@
+---
+import { getLatestVideo } from "../modules/youtube";
+
+const video = await getLatestVideo();
+---
+
+{
+    video ? (
+        <article>
+            <h2>Latest Video: {video.title}</h2>
+            <a href={video.url} target="_blank">
+                <img
+                    src={video.thumbnail}
+                    alt={video.title}
+                    width="480"
+                    height="360"
+                />
+            </a>
+            <p>
+                <a href={video.url} target="_blank">
+                    Watch on YouTube
+                </a>
+            </p>
+        </article>
+    ) : (
+        <p>No videos found.</p>
+    )
+}
