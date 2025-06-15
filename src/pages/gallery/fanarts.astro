@@ -1,0 +1,63 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import "../../styles/global.css";
+import fanarts from "../../data/fanarts.ts";
+import GalleryCard from "../../components/GalleryCard.astro";
+---
+
+<Layout title="Gallery - Fanarts">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2
+            class="mt-50 text-5xl md:text-6xl font-bold text-center w-fit mx-auto mb-12 gradient-text"
+            data-aos="fade-up"
+        >
+            Fanarts
+            <span class="block mt-2 font-normal text-xl md:text-2xl">
+                Gallery of arts people have made of my OCs.
+                <span class="block mt-2 font-normal text-sm md:text-md">
+                    Shoutout to everyone here!
+                </span>
+            </span>
+        </h2>
+
+        <hr class="border-gray-800" />
+        <div class="grid gap-6 grid-cols-1 lg:grid-cols-2 mt-12">
+            {
+              fanarts.map((art, i) => (
+                <GalleryCard
+                  image={art.image}
+                  artist={art.artist}
+                  artistUsn={art.artistUsn}
+                  link={art.link}
+                  delay={(i + 1) * 100}
+                />
+              ))
+            }
+        </div>          
+    </div>
+    <!-- Lightbox container -->
+    <div id="lightbox" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" class="max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-lg" />
+    </div>
+    
+    <script client>
+        function openLightbox(src) {
+            const lb = document.getElementById("lightbox");
+            const img = document.getElementById("lightbox-img");
+            img.src = src;
+            lb.classList.remove("hidden");
+        }
+    
+        function closeLightbox() {
+            const lb = document.getElementById("lightbox");
+            lb.classList.add("hidden");
+            document.getElementById("lightbox-img").src = "";
+        }
+    
+        // Optional: ESC key closes modal
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") closeLightbox();
+        });
+    </script>
+  
+</Layout>

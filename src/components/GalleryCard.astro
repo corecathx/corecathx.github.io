@@ -1,0 +1,25 @@
+---
+const { image, artist, artistUsn, link, delay } = Astro.props;
+---
+
+<div class="hover-scale">
+  <div
+    class="rounded-xl overflow-hidden shadow-md duration-300 glass-effect cursor-pointer"
+    data-aos="fade-up"
+    data-aos-delay={delay}
+    data-full={image}
+    onclick="openLightbox(this.dataset.full)"
+  >
+    <img
+      src={image}
+      alt={`Fanart by ${artist}`}
+      class="rounded-b-xl w-full object-contain transition-transform duration-300"
+      loading="lazy"
+    />
+
+    <div class="p-4 pointer-events-none">
+      <p class="text-lg font-semibold text-white mb-1">{artist}</p>
+      <p class="text-sm text-gray-400">@{artistUsn}</p>
+    </div>
+  </div>
+</div>
