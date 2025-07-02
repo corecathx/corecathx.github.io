@@ -18,7 +18,7 @@ import audioData from "../data/audio.ts";
 
             {/* Track Info */}
             <div class="text-center space-y-2">
-                <h1 class="text-2xl font-bold text-white">
+                <h1 class="text-2xl font-extrabold text-white">
                     <span id="now-playing-name">{audioData[0].name}</span>
                     <span class="text-accent2 font-normal" id="now-playing-genre">({audioData[0].genre})</span>
                 </h1>
@@ -38,9 +38,9 @@ import audioData from "../data/audio.ts";
 
             {/* Playback Controls */}
             <div class="flex justify-center items-center gap-6">
-                <button id="prev" class="text-accent2 hover:text-white transition-colors">⏮</button>
+                <button id="prev" class="text-accent2 hover:text-white ">⏮</button>
                 <button id="play-pause" class="w-12 h-12 rounded-full bg-gradient-to-br from-accent1 to-accent2 flex items-center justify-center hover:scale-105 transition-transform">▶</button>
-                <button id="next" class="text-accent2 hover:text-white transition-colors">⏭</button>
+                <button id="next" class="text-accent2 hover:text-white ">⏭</button>
             </div>
 
             {/* Volume Control */}
@@ -60,12 +60,12 @@ import audioData from "../data/audio.ts";
 
         {/* Playlist Section */}
         <div class="glass-effect p-4 rounded-xl md:max-h-[500px] overflow-y-auto">
-            <h3 class="text-lg font-bold text-accent2 mb-4">Playlist</h3>
+            <h3 class="text-lg font-extrabold text-accent2 mb-4">Playlist</h3>
             <div class="space-y-3">
                 {
                     audioData.map((track, index) => (
                         <div
-                            class={`flex items-center gap-4 p-3 rounded-lg cursor-pointer transition-colors ${index === 0 ? "bg-white/10" : "hover:bg-white/5"}`}
+                            class={`flex items-center gap-4 p-3 rounded-lg cursor-pointer  ${index === 0 ? "bg-white/10" : "hover:bg-white/5"}`}
                             data-src={track.source}
                             data-index={index}
                             data-image={track.image || "https://placehold.co/50"}

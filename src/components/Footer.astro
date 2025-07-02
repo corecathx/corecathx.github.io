@@ -1,15 +1,33 @@
 ---
 import ViewCount from "./ViewCount.astro";
-
+import SocialLinks from "./SocialLinks.astro";
 ---
-<footer class="py-10 px-4 sm:px-6 lg:px-8 border-t border-gray-800 bg-[rgb(10,10,10)]/10 backdrop-blur-lg w-full">
-    <div class="max-w-7xl mx-auto text-center">
-        <p class="text-gray-400 flex flex-col items-center gap-1 text-center w-fit mx-auto">
-            <span class="flex items-center gap-1">
-                Made with <img class="size-4 invert-[0.8]" src="https://www.svgrepo.com/show/532473/heart.svg"> by CoreCat.
+
+<footer class="py-12 px-4 sm:px-6 lg:px-8 border-t border-gray-800/50 bg-gradient-to-b from-transparent to-[rgba(10,10,15,0.5)] backdrop-blur-lg w-full">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div class="text-center md:text-left">
+                <p class="text-gray-400 flex flex-col items-center md:items-start gap-1">
+                    <span class="flex items-center gap-1.5">
+                        Made with <span class="text-red-400 animate-pulse">❤️</span> by CoreCat
+                    </span>
+                    <ViewCount />
+                </p>
+            </div>
+
+            <div>
+                <SocialLinks/>
+            </div>
+        </div>
+        
+        <div class="hr-custom my-8"></div>
+        
+        <p class="text-xs text-gray-500 text-center">
+            {new Date().getFullYear()} CoreCat
+            <span class="hidden sm:inline-block mx-2">•</span>
+            <span class="block sm:inline mt-1 sm:mt-0">
+                Powered by <a href="https://astro.build/" class="hover:text-[#00FFF7] transition-colors">Astro</a>
             </span>
-            <ViewCount />
-            <!--<span class="text-gray-600 text-[0.8rem]">Powered by <a href="https://astro.build/" class="gradient-text">Astro</a> 🚀.</span>-->
-        </p>        
+        </p>
     </div>
 </footer>

@@ -1,37 +1,28 @@
 ---
+import Title from "../components/Title.astro";
 import Layout from "../layouts/Layout.astro";
 import "../styles/global.css";
 ---
 
 <Layout title="Socials">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2
-            class="mt-50 text-5xl md:text-6xl font-bold text-center w-fit mx-auto mb-12 gradient-text"
-            data-aos="fade-up"
-        >
-            Socials
-            <span class="block mt-2 font-normal text-xl md:text-2xl">
+    <div class="mt-50 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class='text-center mb-12 w-fit mx-auto' data-aos="fade-up">
+            <h1 class="text-5xl md:text-6xl w-fit pb-1 font-extrabold gradient-text mx-auto">
+                Socials
+            </h1>
+            <h2 class="font-bold text-white mt-2 text-xl md:text-2xl">
                 Here's a quick glance of my socials!
-                <span class="block mt-2 font-normal text-sm md:text-md">
+                <span class="block mt-2 text-gray-400 font-normal text-sm md:text-md">
                     Everything in here is not final design-wise.
                 </span>
-            </span>
-        </h2>
-
+            </h2>
+        </div>
         <hr class="border-gray-800" />
 
-        <!-- GitHub -->
+        <!-- github -->
         <section id="github" class="py-20 px-4 sm:px-6 lg:px-8">
             <div class="max-w-7xl mx-auto">
-                <h2
-                    class="text-5xl md:text-6xl font-bold text-center w-fit mx-auto mb-12 gradient-text"
-                    data-aos="fade-up"
-                >
-                    GitHub
-                    <span class="block mt-2 font-normal text-xl md:text-2xl">
-                        My code projects are public here.
-                    </span>
-                </h2>
+                <Title text='GitHub' desc='My code projects are public here.'/>
                 <div
                     class="bg-[rgb(10,10,10)]/10 glass-effect text-white p-6 rounded-xl w-full"
                     data-aos="fade-up"
@@ -43,7 +34,7 @@ import "../styles/global.css";
                             alt="GitHub Avatar"
                         />
                         <div>
-                            <h3 class="text-2xl font-bold">CoreCat</h3>
+                            <h3 class="text-2xl font-extrabold">CoreCat</h3>
                             <p class="text-gray-400">@corecathx</p>
                         </div>
                     </div>
@@ -72,18 +63,11 @@ import "../styles/global.css";
             </div>
         </section>
 
-        <!-- X (Twitter) -->
+        <!-- x -->
         <section id="twitter" class="py-20 px-4 sm:px-6 lg:px-8">
             <div class="max-w-7xl mx-auto">
-                <h2
-                    class="text-5xl md:text-6xl font-bold text-center w-fit mx-auto mb-12 gradient-text"
-                    data-aos="fade-up"
-                >
-                    X
-                    <span class="block mt-2 font-normal text-xl md:text-2xl">
-                        I occasionally post stuff here.
-                    </span>
-                </h2>
+                <Title text='X' desc='I occasionally post stuff here.'/>
+
                 <div
                     class="bg-[rgb(10,10,10)]/10 glass-effect text-white p-6 rounded-xl space-y-4 w-full"
                     data-aos="fade-up"
@@ -99,7 +83,7 @@ import "../styles/global.css";
                             alt="Twitter Avatar"
                         />
                         <div>
-                            <h3 class="text-2xl font-bold">CoreCat</h3>
+                            <h3 class="text-2xl font-extrabold">CoreCat</h3>
                             <p class="text-gray-400">@corecathx</p>
                         </div>
                     </div>
@@ -117,18 +101,11 @@ import "../styles/global.css";
             </div>
         </section>
 
-        <!-- YouTube -->
+        <!-- youtube -->
         <section id="youtube" class="py-20 px-4 sm:px-6 lg:px-8">
             <div class="max-w-7xl mx-auto">
-                <h2
-                    class="text-5xl md:text-6xl font-bold text-center w-fit mx-auto mb-12 gradient-text"
-                    data-aos="fade-up"
-                >
-                    YouTube
-                    <span class="block mt-2 font-normal text-xl md:text-2xl">
-                        A place where I upload most of my stuff.
-                    </span>
-                </h2>
+                <Title text='YouTube' desc='A place where I upload most of my stuff.'/>
+
                 <div
                     class="bg-[rgb(10,10,10)]/10 glass-effect text-white p-6 rounded-xl space-y-4 w-full"
                     data-aos="fade-up"
@@ -145,7 +122,7 @@ import "../styles/global.css";
                         />
                         <div>
                             <div class='flex items-center gap-2'>
-                                <h3 class="text-2xl font-bold">Core5570R</h3>
+                                <h3 class="text-2xl font-extrabold">Core5570R</h3>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="12" viewBox="0 0 12 12" width="12" focusable="false" aria-hidden="true" style="pointer-events: none; display: inherit; width: 100%; height: 100%;"><g clip-path="url(#a_yt2122)"><path clip-rule="evenodd" d="M10.334 4.205a1.8 1.8 0 010 3.59 1.8 1.8 0 01-2.539 2.54 1.8 1.8 0 01-3.59-.001 1.8 1.8 0 01-2.538-2.539 1.8 1.8 0 010-3.59 1.8 1.8 0 012.538-2.539 1.8 1.8 0 013.59 0 1.8 1.8 0 012.539 2.539ZM6 3v2.668A1.75 1.75 0 107 7.25V4h1V3H6Z" fill-rule="evenodd"></path></g><defs><clipPath id="a_yt2122"><path d="M0 0h12v12H0z"></path></clipPath></defs></svg>
                             </div>
                             <p class="text-gray-400">@core5570r</p>
@@ -164,21 +141,10 @@ import "../styles/global.css";
             </div>
         </section>
         
-        <!-- Discord -->
+        <!-- discord -->
         <section id="discord" class="py-20 px-4 sm:px-6 lg:px-8">
             <div class="max-w-7xl mx-auto">
-                <h2
-                    class="text-5xl md:text-6xl font-bold text-center w-fit mx-auto mb-12 gradient-text"
-                    data-aos="fade-up"
-                >
-                    Discord
-                    <span class="block mt-2 font-normal text-xl md:text-2xl">
-                        A place where I actually read DMs.
-                    </span>
-                    <span class="block mt-2 font-normal text-sm md:text-md">
-                        (/hj)
-                    </span>
-                </h2>
+                <Title text='Discord' desc='A place where I read DMs.'/>
 
                 <div
                     class="bg-[rgb(10,10,10)]/10 glass-effect text-white p-6 rounded-xl space-y-4 w-full"
@@ -197,7 +163,7 @@ import "../styles/global.css";
                         />
                         <div>
                             <div class="flex items-center gap-2">
-                                <h3 class="text-2xl font-bold">CoreCat</h3>
+                                <h3 class="text-2xl font-extrabold">CoreCat</h3>
                                 <div class="glass-effect flex gap-2 p-1 rounded-lg">
                                     <img 
                                         src="https://cdn.discordapp.com/clan-badges/1369737270935945336/1e1d5a01d20062e6b770e392cdb43806.png?size=256"
@@ -228,19 +194,10 @@ import "../styles/global.css";
             </div>
         </section>
 
-        <!-- Spotify -->
+        <!-- spotify -->
         <section id="spotify" class="py-20 px-4 sm:px-6 lg:px-8">
             <div class="max-w-7xl mx-auto">
-                <h2
-                    class="text-5xl md:text-6xl font-bold text-center w-fit mx-auto mb-12 gradient-text"
-                    data-aos="fade-up"
-                >
-                    Spotify
-                    <span class="block mt-2 font-normal text-xl md:text-2xl">
-                        Some of my songs are here too.
-                    </span>
-                </h2>
-                </h2>
+                <Title text='Spotify' desc='Some of my songs are here too.'/>
                 <iframe
                     class="rounded-xl w-full h-[352px]"
                     src="https://open.spotify.com/embed/artist/5p0Zxa2eYgAr6iz04evSCL?utm_source=generator"

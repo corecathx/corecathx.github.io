@@ -5,6 +5,7 @@ import projects from "../data/projects.ts";
 import ProjectCard from "../components/ProjectCard.astro";
 import SocialLinks from "../components/SocialLinks.astro";
 import LatestVideo from "../components/LatestVideo.astro";
+import ScrollDown from "../components/ScrollDown.astro";
 
 import "../styles/global.css";
 ---
@@ -13,12 +14,15 @@ import "../styles/global.css";
 	<section class="min-h-screen flex items-center pt-32 pb-20 px-4 sm:px-6 lg:px-8">
 		<div class="max-w-7xl mx-auto text-center">
 			<div class="mx-auto mb-8 relative inline-flex items-center w-fit" data-aos="fade-up">
-				<div class="absolute inset-0 bg-gradient-to-r from-[var(--accent1)] to-[var(--accent2)] blur-3xl opacity-30 rounded-full"></div>
+				<div class="absolute inset-0 bg-gradient-to-r from-[var(--accent1)] to-[var(--accent2)] blur-3xl opacity-10 rounded-full"></div>
 				<img src={coreIcon.src} class="size-32 md:size-48 mr-6" />
-				<h1 class="text-5xl md:text-7xl text-left font-bold gradient-text relative">
-					CoreCat
-					<span class="block mt-2 text-xl md:text-3xl">Developer, Composer, and Artist</span>
-				</h1>
+				<div>
+					<h1 class="text-5xl md:text-7xl text-left font-extrabold gradient-text relative w-fit">
+						CoreCat
+					</h1>
+					<h2 class="font-extrabold text-white mt-2 text-xl md:text-3xl">Developer, Composer, and Artist</h2>
+				</div>
+
 			</div>
 
 			<p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-12" data-aos="fade-up" data-aos-delay="100">
@@ -33,10 +37,10 @@ import "../styles/global.css";
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
 					</svg>
 				</a>
-				<a href="/projects" class="hover-scale inline-flex items-center border border-[var(--accent1)] text-[var(--accent1)] px-8 py-4 rounded-full hover:bg-[var(--accent1)]/10 transition-colors">
+				<a href="/projects" class="hover-scale inline-flex items-center border border-[var(--accent1)] text-[var(--accent1)] px-8 py-4 rounded-full hover:bg-[var(--accent1)]/10 ">
 					Projects
 				</a>
-				<a href="/socials" class="hover-scale inline-flex items-center border border-[var(--accent1)] text-[var(--accent1)] px-8 py-4 rounded-full hover:bg-[var(--accent1)]/10 transition-colors">
+				<a href="/socials" class="hover-scale inline-flex items-center border border-[var(--accent1)] text-[var(--accent1)] px-8 py-4 rounded-full hover:bg-[var(--accent1)]/10 ">
 					Socials
 				</a>
 			</div>
@@ -49,10 +53,12 @@ import "../styles/global.css";
 		<div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-12">
 			<div class="flex-1">
 				<div class="border-l-4 pl-6 py-2 border-[var(--accent1)] rounded-lg mb-8" data-aos="fade-right">
-					<h2 class="text-5xl md:text-6xl font-bold w-fit text-left gradient-text" data-aos="fade-right" data-aos-delay="100">
-						About Me
-						<span class="block mt-2 font-normal text-xl md:text-2xl">Introduction.</span>
-					</h2>
+					<div data-aos="fade-right" data-aos-delay="100">
+						<h1 class="text-5xl md:text-6xl w-fit text-left font-extrabold gradient-text relative">
+							About Me
+						</h1>
+						<h2 class="font-extrabold text-white mt-2 text-xl md:text-2xl">Introduction</h2>
+					</div>
 				</div>
 				<p class="text-lg md:text-xl leading-relaxed text-gray-300" data-aos="fade-right" data-aos-delay="200">
 					Hi, I'm CoreCat. You might know me as Core5570R. I'm a 17-year-old student who's still learning how to create things.
@@ -78,10 +84,12 @@ import "../styles/global.css";
 		<div class="max-w-6xl items-center justify-center place-items-center mx-auto flex flex-col md:flex-row-reverse gap-12">
 			<div class="flex-1">
 				<div class="border-l-4 pl-6 py-2 border-[var(--accent1)] rounded-lg mb-8" data-aos="fade-left">
-					<h2 class="text-5xl md:text-6xl w-fit font-bold text-left gradient-text" data-aos="fade-left" data-aos-delay="100">
-						Skills
-						<span class="block mt-2 font-normal text-xl md:text-2xl">What I know.</span>
-					</h2>
+					<div data-aos="fade-left" data-aos-delay="100">
+						<h1 class="text-5xl md:text-6xl w-fit text-left font-extrabold gradient-text relative">
+							Skills
+						</h1>
+						<h2 class="font-extrabold text-white mt-2 text-xl md:text-2xl">What I know.</h2>
+					</div>
 				</div>
 				<p class="text-lg md:text-xl leading-relaxed text-gray-300" data-aos="fade-left" data-aos-delay="200">
 					I know nothing (lol). But here's few things I kinda know:
@@ -106,10 +114,5 @@ import "../styles/global.css";
 			</div>
 			
 		</div>
-	</section>
-	
-
-	<section id="socials" class="py-20 px-4 sm:px-6 lg:px-8">
-		<SocialLinks />
 	</section>
 </Layout>
