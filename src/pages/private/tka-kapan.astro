@@ -5,88 +5,142 @@ import "../../styles/global.css";
 ---
 
 <Layout title="TKA Kapan?" description="Lihat berapa waktu yang tersisa sebelum TKA (sesi 3)">
-	<!-- aaowkowk lu ngapain liat source code gw jir? -->
-	<!-- gabut kah atau kepo? :3c -->
-    <div class="mt-24 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12 w-fit mx-auto" data-aos="fade-up">
-            <Title
-                text="TKA Kapan?"
-                desc="Lihat berapa waktu yang tersisa sebelum TKA (sesi 3)"
-            />
-        </div>
+	<div class="mt-24 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+		<div class="text-center mb-12 w-fit mx-auto">
+			<Title text="TKA Kapan?" desc="Lihat berapa waktu yang tersisa sebelum TKA (sesi 3)" />
+		</div>
 
-        <hr class="border-gray-800 mb-8" />
+		<hr class="border-gray-800 mb-8" />
 
-        <div class='glass-effect p-10'  data-aos="fade-up" data-aos-delay='200'>
-	        <div class="text-center mb-4">
-	            <div
-	                id="countdown"
-					style='font-family: monospace;'
-	                class="text-4xl sm:text-5xl md:text-6xl font-mono font-semibold text-red-400 drop-shadow-[0_0_10px_rgba(248,113,113,0.5)]"
-	            ></div>
-	            <p class="text-gray-400 text-sm mt-2 font-mono" style='font-family: monospace;'>Menuju 13:30 :]</p>
-	        </div>
+		<div class="glass-effect p-10" data-aos="fade-up" data-aos-delay="200">
+			<div class="flex justify-center gap-4 mb-6">
+				<button id="day1" class="hover-scale inline-flex items-center border border-[var(--accent1)] text-[var(--accent1)] px-8 py-4 rounded-full hover:bg-[var(--accent1)]/10  hover-scale">Hari 1</button>
+				<button id="day2" class="px-4 py-2 rounded-md text-sm bg-gray-700 text-gray-200 transition">Hari 2</button>
+			</div>
 
-	        <div class="w-full max-w-xl mx-auto mt-6">
-	            <div class="w-full h-4 bg-gray-900 rounded-full overflow-hidden">
-	                <div
-	                    id="progress-bar"
-	                    class="h-full bg-red-500 transition-all duration-100 ease-linear rounded-full"
-	                    style="width: 0%"
-	                ></div>
-	            </div>
-	            <p class="text-center text-gray-400 text-xs mt-2 font-mono" style='font-family: monospace;' id="progress-text">0%</p>
-	        </div>
-        </div>
-    </div>
+			<div class="text-center mb-4">
+				<div id="countdown" class="text-4xl sm:text-5xl md:text-6xl font-semibold text-red-400 drop-shadow-[0_0_10px_rgba(248,113,113,0.5)]" style="font-family: monospace;"></div>
+				<p class="text-gray-400 text-sm mt-2" style="font-family: monospace;">Menuju 13:30 :]</p>
+			</div>
 
-    <script>
-        const countdownEl = document.getElementById('countdown');
-        const progressBar = document.getElementById('progress-bar');
-        const progressText = document.getElementById('progress-text');
+			<div id="tka-gif" class="hidden mt-6 flex justify-center">
+				<img src="https://uploads.dailydot.com/2024/10/wallahi-im-done-finished.gif?auto=compress&fm=gif" alt="Waktunya TKA" class="rounded-lg shadow-lg w-80" />
+			</div>
 
-        function getTarget() {
-            const target = new Date();
-            target.setHours(13, 30, 0, 0);
-            if (new Date() > target) target.setDate(target.getDate() + 1);
-            return target;
-        }
+			<div class="w-full max-w-xl mx-auto mt-6">
+				<div class="w-full h-4 bg-gray-900 rounded-full overflow-hidden">
+					<div id="progress-bar" class="h-full bg-red-500 transition-all duration-100 ease-linear rounded-full" style="width: 0%"></div>
+				</div>
+				<p id="progress-text" class="text-center text-gray-400 text-xs mt-2" style="font-family: monospace;">0.00%</p>
+				<p id="note" class="text-center text-gray-500 text-xs mt-2 hidden" style="font-family: monospace;">(Nyantai aja, hari ke 2 juga belum mulai)</p>
+			</div>
+		</div>
+	</div>
 
-        const target = getTarget();
-        const startOfDay = new Date(target);
-        startOfDay.setHours(0, 0, 0, 0);
-        const totalDayMs = target - startOfDay;
+	<script>
+		const countdownEl = document.getElementById("countdown");
+		const progressBar = document.getElementById("progress-bar");
+		const progressText = document.getElementById("progress-text");
+		const note = document.getElementById("note");
+		const day1Btn = document.getElementById("day1");
+		const day2Btn = document.getElementById("day2");
+		const gifEl = document.getElementById("tka-gif");
 
-        function updateCountdown() {
-            const now = new Date();
-            const diff = target - now;
+		let currentDay = 1;
 
-            if (diff <= 0) {
-                countdownEl.textContent = "00:00:00.000";
-                progressBar.style.width = "100%";
-                progressText.textContent = "100%";
-                return;
-            }
+		const TKA_DAYS = {
+			1: new Date(2025, 10, 3, 13, 30, 0, 0),
+			2: new Date(2025, 10, 4, 13, 30, 0, 0),
+		};
 
-            const hours = Math.floor(diff / 3600000);
-            const minutes = Math.floor((diff % 3600000) / 60000);
-            const seconds = Math.floor((diff % 60000) / 1000);
-            const milliseconds = diff % 1000;
+		function setActive(day) {
+			[day1Btn, day2Btn].forEach((btn, i) => {
+				const isActive = i + 1 === day;
 
-            countdownEl.textContent =
-                `${String(hours).padStart(2, '0')}:` +
-                `${String(minutes).padStart(2, '0')}:` +
-                `${String(seconds).padStart(2, '0')}.` +
-                `${String(milliseconds).padStart(3, '0')}`;
+				if (isActive) {
+					btn.className = `
+						inline-flex items-center px-4 py-2 rounded-full text-white font-bold
+						border border-[var(--accent2)]
+					`.trim().replace(/\s+/g, ' ');
+				} else {
+					btn.className = `
+						inline-flex items-center px-4 py-2 rounded-full text-white
+						border border-[var(--accent1)]
+					`.trim().replace(/\s+/g, ' ');
+				}
+			});
+		}
 
-            const elapsed = now - startOfDay;
-            const progress = Math.min((elapsed / totalDayMs) * 100, 100);
-            progressBar.style.width = `${progress}%`;
-            progressText.textContent = `${progress.toFixed(2)}%`;
+		function formatTime(ms) {
+			const h = Math.floor(ms / 3600000);
+			const m = Math.floor((ms % 3600000) / 60000);
+			const s = Math.floor((ms % 60000) / 1000);
+			const mi = Math.floor(ms % 1000);
+			return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}.${String(mi).padStart(3, "0")}`;
+		}
 
-            requestAnimationFrame(updateCountdown);
-        }
+		function startCountdown() {
+			let target = new Date(TKA_DAYS[currentDay]);
+			const startOfDay = new Date(target);
+			startOfDay.setHours(0, 0, 0, 0);
+			const total = target - startOfDay;
 
-        requestAnimationFrame(updateCountdown);
-    </script>
+			function frame() {
+				const now = new Date();
+
+				if (now > TKA_DAYS[2]) {
+					window.location.href = "/404";
+					return;
+				}
+
+				if (currentDay === 2 && now < new Date(2025, 10, 4, 0, 0, 0)) {
+					countdownEl.textContent = "--:--:--.---";
+					progressBar.style.width = "0%";
+					progressText.textContent = "0.00%";
+					gifEl.classList.add("hidden");
+					note.classList.remove("hidden");
+					requestAnimationFrame(frame);
+					return;
+				}
+
+				note.classList.add("hidden");
+				const diff = target - now;
+
+				if (diff <= 0) {
+					countdownEl.textContent = "Waktunya TKA.";
+					progressBar.style.width = "100%";
+					progressText.textContent = "100.00%";
+					gifEl.classList.remove("hidden");
+					return;
+				}
+
+				gifEl.classList.add("hidden");
+				countdownEl.textContent = formatTime(diff);
+
+				const elapsed = total - diff;
+				const progress = Math.min((elapsed / total) * 100, 100);
+				progressBar.style.width = progress + "%";
+				progressText.textContent = progress.toFixed(2) + "%";
+
+				requestAnimationFrame(frame);
+			}
+
+			requestAnimationFrame(frame);
+		}
+
+		day1Btn.onclick = () => {
+			currentDay = 1;
+			setActive(1);
+			startCountdown();
+		};
+
+		day2Btn.onclick = () => {
+			currentDay = 2;
+			setActive(2);
+			startCountdown();
+		};
+
+		setActive(currentDay);
+		startCountdown();
+	</script>
 </Layout>
