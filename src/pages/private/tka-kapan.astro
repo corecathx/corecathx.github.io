@@ -1,0 +1,92 @@
+---
+import Title from "../../components/Title.astro";
+import Layout from "../../layouts/Layout.astro";
+import "../../styles/global.css";
+---
+
+<Layout title="TKA Kapan?" description="Lihat berapa waktu yang tersisa sebelum TKA (sesi 3)">
+	<!-- aaowkowk lu ngapain liat source code gw jir? -->
+	<!-- gabut kah atau kepo? :3c -->
+    <div class="mt-24 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12 w-fit mx-auto" data-aos="fade-up">
+            <Title
+                text="TKA Kapan?"
+                desc="Lihat berapa waktu yang tersisa sebelum TKA (sesi 3)"
+            />
+        </div>
+
+        <hr class="border-gray-800 mb-8" />
+
+        <div class='glass-effect p-10'>
+	        <div class="text-center mb-4">
+	            <div
+	                id="countdown"
+					style='font-family: monospace;'
+	                class="text-4xl sm:text-5xl md:text-6xl font-mono font-semibold text-red-400 drop-shadow-[0_0_10px_rgba(248,113,113,0.5)]"
+	            ></div>
+	            <p class="text-gray-400 text-sm mt-2 font-mono" style='font-family: monospace;'>Menuju 13:30 :]</p>
+	        </div>
+
+	        <div class="w-full max-w-xl mx-auto mt-6">
+	            <div class="w-full h-4 bg-gray-900 rounded-full overflow-hidden">
+	                <div
+	                    id="progress-bar"
+	                    class="h-full bg-red-500 transition-all duration-100 ease-linear rounded-full"
+	                    style="width: 0%"
+	                ></div>
+	            </div>
+	            <p class="text-center text-gray-400 text-xs mt-2 font-mono" style='font-family: monospace;' id="progress-text">0%</p>
+	        </div>
+        </div>
+    </div>
+
+    <script>
+        const countdownEl = document.getElementById('countdown');
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+
+        function getTarget() {
+            const target = new Date();
+            target.setHours(13, 30, 0, 0);
+            if (new Date() > target) target.setDate(target.getDate() + 1);
+            return target;
+        }
+
+        const target = getTarget();
+        const startOfDay = new Date(target);
+        startOfDay.setHours(0, 0, 0, 0);
+        const totalDayMs = target - startOfDay;
+
+        function updateCountdown() {
+            const now = new Date();
+            const diff = target - now;
+
+            if (diff <= 0) {
+                countdownEl.textContent = "00:00:00.000";
+                progressBar.style.width = "100%";
+                progressText.textContent = "100%";
+                return;
+            }
+
+            const hours = Math.floor(diff / 3600000);
+            const minutes = Math.floor((diff % 3600000) / 60000);
+            const seconds = Math.floor((diff % 60000) / 1000);
+            const milliseconds = diff % 1000;
+
+            countdownEl.textContent =
+                `${String(hours).padStart(2, '0')}:` +
+                `${String(minutes).padStart(2, '0')}:` +
+                `${String(seconds).padStart(2, '0')}.` +
+                `${String(milliseconds).padStart(3, '0')}`;
+
+            const elapsed = now - startOfDay;
+            const progress = Math.min((elapsed / totalDayMs) * 100, 100);
+            progressBar.style.width = `${progress}%`;
+            progressText.textContent = `${progress.toFixed(2)}%`;
+
+            requestAnimationFrame(updateCountdown);
+        }
+
+        requestAnimationFrame(updateCountdown);
+    </script>
+</Layout>
