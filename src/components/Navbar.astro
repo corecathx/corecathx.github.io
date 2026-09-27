@@ -1,0 +1,56 @@
+---
+const items = [
+    { name: "Home", href: "/" },
+    {
+        name: "Projects",
+        href: "/projects",
+        list: [
+            { name: "Whisker", href: "/projects/whisker" },
+            { name: "CoreCat CLI", href: "/projects/corecat-cli" }
+        ]
+    },
+    { name: "About", href: "/about" }
+]
+---
+
+<nav class="sticky h-16 max-h-16 border-b border-b-white/50 flex items-center p-2">
+    <a href="/" class="flex items-center flex-row gap-2">
+        <img src="/favicon.svg" class="size-10">
+        <h1 class="text-xl font-bold">CoreCat</h1>
+    </a>
+    
+    <div class="flex-1 border-t-2 border-dashed border-white/50 mx-4"></div>
+
+    <div class="flex items-center gap-4">
+        {items.map((item) => (
+            item.list ? (
+                <div class="relative group">
+                    <a
+                        href={item.href}
+                        class="cursor-pointer flex items-center hover:opacity-70"
+                    >
+                        {item.name}
+                        <span class="material-symbols-sharp">expand_more</span>
+                    </a>
+
+                    <div class="absolute right-0 top-full pt-2 hidden group-hover:block z-1000">
+                        <div class="min-w-32 border border-white/50 bg-(--background) p">
+                            {item.list.map((subitem) => (
+                                <a
+                                    href={subitem.href}
+                                    class="block p-2 hover:bg-white/10"
+                                >
+                                    {subitem.name}
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            ) : (
+                <a href={item.href} class="hover:opacity-70">
+                    {item.name}
+                </a>
+            )
+        ))}
+    </div>
+</nav>

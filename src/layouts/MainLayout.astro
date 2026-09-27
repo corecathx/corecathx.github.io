@@ -1,0 +1,55 @@
+---
+import "../styles/global.css";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+
+const { 
+    title = "CoreCat" 
+} = Astro.props;
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp"
+        />
+        <script
+            data-goatcounter="https://corecathx.goatcounter.com/count"
+            async
+            src="//gc.zgo.at/count.js"
+        ></script>
+        <style>
+            .checkerboard {
+                background-color: var(--background);
+                background-image: repeating-conic-gradient(
+                    #181818 0 25%,
+                    transparent 0 50%
+                );
+                background-size: 64px 64px;
+                animation: checkerboard 2s linear infinite;
+            }
+
+            @keyframes checkerboard {
+                to {
+                    background-position: 32px 32px;
+                }
+            }
+        </style>
+        <title>{title}</title>
+    </head>
+
+    <body class="checkerboard p-2">
+        <main class="mx-auto max-w-7xl min-w-0 flex flex-col">
+            <Navbar/>
+            <div class="h-2"></div>
+            <slot />
+            <Footer />
+        </main>
+    </body>
+</html>

@@ -1,0 +1,26 @@
+<footer class="relative flex items-center justify-between border-t border-white/50 p-4 text-sm text-white/60 mt-32">
+    <img
+        src="/images/cat-on-a-box.png"
+        alt="Cat on a box doodle"
+        class="absolute bottom-full left-4 h-30 translate-y-4 brightness-70"
+    >
+
+    <span>© 2026 CoreCat</span>
+
+    <span>
+        <span id="page-views">-</span> views
+    </span>
+</footer>
+
+<script>
+    const views = document.getElementById("page-views");
+
+    if (views) {
+        fetch("https://corecathx.goatcounter.com/counter/TOTAL.json")
+            .then((response) => response.json())
+            .then((data) => {
+                views.textContent = data.count;
+            })
+            .catch(() => {});
+    }
+</script>

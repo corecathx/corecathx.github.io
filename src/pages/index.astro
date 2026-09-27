@@ -1,17 +1,44 @@
 ---
-
+import MainLayout from "../layouts/MainLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout>
+	<section id="announcement" class="border border-cyan-400/80 text-cyan-400 hover:text-black hover:bg-cyan-400 p-4">
+		<div class="flex items-center gap-2 text-sm">
+			<span class="material-symbols-sharp">campaign</span>
+			<h2 class="font-bold">Website Rework Update!</h2>
+		</div>
+
+		<p class="mt-2 text-sm">
+			The entire website has been reworked from the ground up.
+			Hope you like it~ :]
+		</p>
+
+		<script>
+			const announcement = document.getElementById('announcement') ?? null;
+			announcement.onclick = (_) => {
+				announcement.classList.add('hidden')
+			}
+		</script>
+	</section>
+    <section class="mt-2 relative h-80 border border-white/50 bg-[#202020] flex items-center justify-center overflow-hidden">
+        <img
+            src="/images/whole-gng-doodle.png"
+            alt="Doodle"
+            class="absolute right-0 bottom-0 h-60 opacity-20"
+        >
+
+        <div class="relative z-10 text-center text-white mix-blend-difference">
+            <h1 class="text-5xl font-bold">CoreCat</h1>
+            <p class="mt-1 text-lg">Programmer, Composer, and Artist</p>
+        </div>
+    </section>
+
+    <section class="mt-2 border border-white/50 p-6">
+        <h2 class="text-2xl font-bold">Hello! :]</h2>
+
+        <p class="mt-3 text-white/70 leading-relaxed">
+            I'm CoreCat. I code stuff, make music, and draw whatever I feel like drawing.
+        </p>
+    </section>
+</MainLayout>
