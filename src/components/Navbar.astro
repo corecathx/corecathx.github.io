@@ -6,22 +6,21 @@ const items = [
         href: "/projects",
         list: [
             { name: "Whisker", href: "/projects/whisker" },
-            { name: "CoreCat CLI", href: "/projects/corecat-cli" }
+            { name: "Whisker CLI", href: "/projects/whisker-cli" }
         ]
     },
     { name: "About", href: "/about" }
 ]
 ---
-
-<nav class="sticky h-16 max-h-16 border-b border-b-white/50 flex items-center p-2">
+<nav class="sticky top-0 z-50 h-16 max-h-16 border-b border-white/50 flex items-center p-2">
     <a href="/" class="flex items-center flex-row gap-2">
         <img src="/favicon.svg" class="size-10">
-        <h1 class="text-xl font-bold">CoreCat</h1>
+        <h1 class="text-xl font-bold hidden md:inline">CoreCat</h1>
     </a>
     
     <div class="flex-1 border-t-2 border-dashed border-white/50 mx-4"></div>
 
-    <div class="flex items-center gap-4">
+    <div class="hidden md:flex items-center gap-4">
         {items.map((item) => (
             item.list ? (
                 <div class="relative group">
@@ -53,4 +52,46 @@ const items = [
             )
         ))}
     </div>
+
+    <button id="menu-button" class="flex md:hidden items-center">
+        <span class="material-symbols-sharp">
+            menu
+        </span>
+    </button>
+
+    <div id="mobile-menu" class="absolute top-full left-0 right-0 hidden md:hidden border border-white/50 bg-(--background) p-2">
+        {items.map((item) => (
+            item.list ? (
+                <div>
+                    <a href={item.href} class="block p-2 hover:bg-white/10">
+                        {item.name}
+                    </a>
+
+                    <div class="border-l-2 border-white/50 ml-2 pl-2">
+                        {item.list.map((subitem) => (
+                            <a
+                                href={subitem.href}
+                                class="block p-2 text-sm hover:bg-white/10"
+                            >
+                                {subitem.name}
+                            </a>
+                        ))}
+                    </div>
+                </div>
+            ) : (
+                <a href={item.href} class="block p-2 hover:bg-white/10">
+                    {item.name}
+                </a>
+            )
+        ))}
+    </div>
 </nav>
+
+<script>
+    const button = document.querySelector("#menu-button")
+    const menu = document.querySelector("#mobile-menu")
+
+    button?.addEventListener("click", () => {
+        menu?.classList.toggle("hidden")
+    })
+</script>
