@@ -1,0 +1,90 @@
+---
+import { tagColors } from "../../data/artworks";
+import type { Artwork } from "../../data/artworks";
+
+type Props = {
+    artwork: Artwork;
+    href?: string;
+};
+
+const { artwork, href } = Astro.props;
+---
+
+<article
+    data-artwork
+    data-tags={artwork.tags.join(",")}
+    class="border border-white/50"
+>
+    {
+        href ? (
+            <a href={href} class="block">
+                <img
+                    src={artwork.image}
+                    alt={artwork.title}
+                    loading="lazy"
+                    decoding="async"
+                    class="block w-full bg-(--background)"
+                />
+            </a>
+        ) : (
+            <button
+                type="button"
+                class="block w-full cursor-pointer"
+                data-image={artwork.image}
+                data-title={artwork.title}
+            >
+                <img
+                    src={artwork.image}
+                    alt={artwork.title}
+                    loading="lazy"
+                    decoding="async"
+                    class="block w-full bg-(--background)"
+                />
+            </button>
+        )
+    }
+
+    <div class="p-4">
+        <div class="flex items-baseline gap-2">
+            <h2 class="text-lg font-bold flex-1">
+                {artwork.title}
+            </h2>
+
+            {
+                artwork.date && (
+                    <time class="text-xs text-white/40">{artwork.date}</time>
+                )
+            }
+        </div>
+
+        {
+            artwork.description && (
+                <p class="mt-1 text-sm text-white/60">{artwork.description}</p>
+            )
+        }
+
+        <div class="mt-3 flex flex-wrap gap-2">
+            {
+                artwork.tags.map((tag) => {
+                    const color = tagColors[tag];
+
+                    return (
+                        <span
+                            class:list={[
+                                "text-xs border px-2 py-1",
+                                !color && "border-white/50 text-white/70",
+                            ]}
+                            style={
+                                color
+                                    ? `color: ${color}; border-color: ${color}80;`
+                                    : undefined
+                            }
+                        >
+                            {tag}
+                        </span>
+                    );
+                })
+            }
+        </div>
+    </div>
+</article>

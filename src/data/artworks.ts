@@ -8,6 +8,50 @@ export type Artwork = {
     tags: string[]
 }
 
+// record = map in haxe, ok
+export const tagColors: Record<string, string> = {
+    corecat: "#FF6000",
+    bytewolf: "#088FFF",
+    kean: "#FFA100",
+    chip: "#00FFFF",
+}
+
+export const characterTags = [
+    "corecat",
+    "bytewolf",
+    "kean",
+    "chip",
+]
+
+//// helper functions ////
+function getArtworkTime(date?: string) {
+    if (!date) 
+        return 0;
+
+    const [day, month, year] = date.split("-").map(Number);
+    return new Date(year, month - 1, day).getTime();
+}
+
+export function getSortedArtworks() {
+    return [...artworks].sort(
+        (a, b) => getArtworkTime(b.date) - getArtworkTime(a.date)
+    );
+}
+
+export function getLatestArtworks(count = 3) {
+    return getSortedArtworks().slice(0, count);
+}
+
+export function getArtworkTags(list = artworks) {
+    return [
+        ...new Set(
+            list.flatMap((artwork) => artwork.tags)
+                .filter((tag) => !characterTags.includes(tag)),
+        ),
+    ].sort();
+}
+
+//// artwork list ////
 export const artworks: Artwork[] = [
     {
         title: "Thank You",

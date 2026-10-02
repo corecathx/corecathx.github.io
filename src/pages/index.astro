@@ -1,6 +1,14 @@
 ---
 import Starfield from "../components/Starfield.astro";
 import MainLayout from "../layouts/MainLayout.astro";
+import ProjectCard from "../components/cards/ProjectCard.astro";
+import ArtworkCard from "../components/cards/ArtworkCard.astro";
+
+import { getLatestProjects } from "../data/projects";
+import { getLatestArtworks } from "../data/artworks";
+
+const latestProjects = await getLatestProjects(3);
+const latestArtworks = getLatestArtworks(3);
 ---
 
 <MainLayout>
@@ -96,10 +104,10 @@ import MainLayout from "../layouts/MainLayout.astro";
 
                 <button
                     class="tab flex shrink-0 items-center gap-2 p-3 text-sm text-left hover:bg-white/10"
-                    data-tab="art"
+                    data-tab="artworks"
                 >
                     <span class="material-symbols-sharp">brush</span>
-                    Art
+                    Artworks
                 </button>
             </nav>
 
@@ -139,13 +147,23 @@ import MainLayout from "../layouts/MainLayout.astro";
                 </div>
 
                 <div class="tab-content hidden" data-content="skills">
-                    <h2 class="text-xl md:text-2xl font-bold">Projects</h2>
+                    <div class="flex items-center justify-between gap-2">
+                        <h2 class="text-xl md:text-2xl font-bold">Projects</h2>
 
-                    <div class="flex gap-4 items-center opacity-70">
-                        <h1 class="material-symbols-sharp text-4xl!">
-                            construction
-                        </h1>
-                        <h1 class="4xl">Unfinished section... for now :']</h1>
+                        <a
+                            href="/projects"
+                            class="text-sm text-cyan-400 hover:text-black hover:bg-cyan-400 px-1"
+                        >
+                            View all
+                        </a>
+                    </div>
+
+                    <div class="mt-4 border border-white/30">
+                        {
+                            latestProjects.map((project, index) => (
+                                <ProjectCard project={project} index={index} />
+                            ))
+                        }
                     </div>
                 </div>
 
@@ -160,20 +178,32 @@ import MainLayout from "../layouts/MainLayout.astro";
                     </div>
                 </div>
 
-                <div class="tab-content hidden" data-content="art">
-                    <h2 class="text-xl md:text-2xl font-bold">Art</h2>
+                <div class="tab-content hidden" data-content="artworks">
+                    <div class="flex items-center justify-between gap-2">
+                        <h2 class="text-xl md:text-2xl font-bold">Artworks</h2>
 
-                    <p
-                        class="mt-3 text-sm md:text-base text-white/70 leading-relaxed"
-                    >
+                        <a
+                            href="/artworks"
+                            class="text-sm text-cyan-400 hover:text-black hover:bg-cyan-400 px-1"
+                        >
+                            View all
+                        </a>
+                    </div>
+
+                    <p class="mt-3 text-sm md:text-base text-white/70">
                         I draw whatever I feel like drawing.
                     </p>
 
-                    <img
-                        src="/images/whole-gng-doodle.png"
-                        alt="Doodle"
-                        class="mt-4 max-w-xs"
-                    />
+                    <div class="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-2">
+                        {
+                            latestArtworks.map((artwork) => (
+                                <ArtworkCard
+                                    artwork={artwork}
+                                    href="/artworks"
+                                />
+                            ))
+                        }
+                    </div>
                 </div>
             </div>
         </div>

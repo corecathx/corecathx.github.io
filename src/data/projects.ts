@@ -8,8 +8,11 @@ type Project = {
     repo?: string
     tags: string[]
     status: "active" | "inactive" | "archived"
-
 }
+
+export type ProjectWithStars = Project & {
+    stars?: number;
+};
 
 //// helper functions ////
 export function getByTag(tag: string) {
@@ -18,6 +21,23 @@ export function getByTag(tag: string) {
 
 export function getByStatus(status: Project["status"]) {
     return projects.filter(project => project.status === status)
+}
+
+export async function getProjectsWithStars(
+    list = projects,
+): Promise<ProjectWithStars[]> {
+    return Promise.all(
+        list.map(async (project) => ({
+            ...project,
+            stars: project.repo
+                ? await Utils.getGithubStars(project.repo)
+                : undefined,
+        })),
+    );
+}
+
+export async function getLatestProjects(count = 3) {
+    return getProjectsWithStars(projects.slice(0, count));
 }
 
 //// project list ////
