@@ -20,6 +20,8 @@ jobs:
 
       - name: Build
         uses: withastro/action@v6
+        env:
+          PUBLIC_GIT_COMMIT: ${{ github.sha }}
 
   deploy:
     needs: build

@@ -1,0 +1,216 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+import { projects } from "../data/projects";
+import { Utils } from "../utils/Utils";
+
+const projectsWithStars = await Promise.all(
+    projects.map(async (project) => ({
+        ...project,
+        stars: project.repo
+            ? await Utils.getGithubStars(project.repo)
+            : undefined,
+    })),
+);
+
+projectsWithStars.sort((a, b) => (b.stars ?? 0) - (a.stars ?? 0));
+
+const tags = [
+    ...new Set(projectsWithStars.flatMap((project) => project.tags)),
+].sort();
+---
+
+<MainLayout>
+    <section
+        class="mt-2 relative h-42 md:h-80 border border-white/50 flex flex-col justify-center bg-[#202020] overflow-hidden"
+    >
+        <img
+            src="/images/core-and-chip.png"
+            alt="An image of Core and Chip with a laptop."
+            class="absolute right-0 bottom-0 h-28 md:h-60 opacity-20"
+        />
+
+        <div class="ml-6 md:ml-10 w-4/5 md:w-fit z-10">
+            <h1 class="text-2xl md:text-4xl font-bold">Projects</h1>
+
+            <p class="mt-2 text-sm md:text-base text-white/70">
+                Things I've made, am making, or haven't finished yet.
+            </p>
+        </div>
+    </section>
+
+    <section
+        class="mt-2 border border-white/50 p-4 flex flex-wrap justify-center gap-3"
+    >
+        <div class="flex flex-wrap gap-2">
+            <button
+                class="filter-status border border-cyan-400 bg-cyan-400 text-black px-3 py-1 text-sm"
+                data-status="all"
+            >
+                All
+            </button>
+
+            <button
+                class="filter-status border border-white/30 text-white/70 hover:border-white/60 px-3 py-1 text-sm"
+                data-status="active"
+            >
+                Active
+            </button>
+
+            <button
+                class="filter-status border border-white/30 text-white/70 hover:border-white/60 px-3 py-1 text-sm"
+                data-status="inactive"
+            >
+                Inactive
+            </button>
+
+            <button
+                class="filter-status border border-white/30 text-white/70 hover:border-white/60 px-3 py-1 text-sm"
+                data-status="archived"
+            >
+                Archived
+            </button>
+        </div>
+
+        <select
+            id="tag-filter"
+            class="border border-white/30 text-white/70 px-3 py-1 text-sm outline-none focus:border-cyan-400"
+        >
+            <option value="all">All tags</option>
+
+            {tags.map((tag) => <option value={tag}>{tag}</option>)}
+        </select>
+    </section>
+
+    <section class="mt-2 border border-white/50 flex-col">
+        {
+            projectsWithStars.map((project, index) => (
+                <article
+                    data-project
+                    data-status={project.status}
+                    data-tags={project.tags.join(",")}
+                    class="p-5 md:p-6 border-b border-white/30 last:border-b-0 flex flex-col"
+                >
+                    <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-3">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs text-white/40">
+                                    {`${index + 1}`.padStart(2, "0")}
+                                </span>
+
+                                <h2 class="text-xl font-bold flex-1">
+                                    {project.name}
+                                </h2>
+
+                                {project.stars !== undefined && (
+                                    <span class="text-xs text-yellow-200 flex items-center gap-1">
+                                        <span class="material-symbols-sharp text-sm">
+                                            star
+                                        </span>
+
+                                        {project.stars}
+                                    </span>
+                                )}
+                                
+                                <span
+                                    class:list={[
+                                        "text-xs border px-2 py-1 w-fit",
+                                        project.status === "active"
+                                            ? "border-cyan-400/70 text-cyan-400"
+                                            : project.status === "inactive"
+                                              ? "border-white/30 text-white/50"
+                                              : "border-red-400/50 text-red-400/70",
+                                    ]}
+                                >
+                                    {project.status}
+                                </span>
+                            </div>
+
+                            <p class="mt-2 text-sm text-white/70 max-w-2xl">
+                                {project.description}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 flex flex-wrap items-center gap-2">
+                        {project.tags.map((tag) => (
+                            <span class="text-xs border border-white/20 px-2 py-1 text-white/60">
+                                {tag}
+                            </span>
+                        ))}
+                    </div>
+
+                    {project.url && (
+                        <a
+                            href={project.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-flex items-center gap-1 ml-auto mt-4 text-sm text-cyan-400 hover:text-black hover:bg-cyan-400 p-1"
+                        >
+                            <span class="material-symbols-sharp text-base">
+                                open_in_new
+                            </span>
+                            View project
+                        </a>
+                    )}
+                </article>
+            ))
+        }
+    </section>
+</MainLayout>
+
+<script>
+    // annoying
+    // @ts-nocheck
+    const statusButtons = document.querySelectorAll(".filter-status");
+    const tagFilter = document.querySelector("#tag-filter");
+    const projects = document.querySelectorAll("[data-project]");
+
+    let status = "all";
+    let tag = "all";
+
+    function updateProjects() {
+        projects.forEach((project) => {
+            const matchesStatus =
+                status === "all" || project.dataset.status === status;
+
+            const tags = project.dataset.tags?.split(",") ?? [];
+
+            const matchesTag = tag === "all" || tags.includes(tag);
+
+            project.classList.toggle("hidden", !matchesStatus || !matchesTag);
+        });
+    }
+
+    statusButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            status = button.dataset.status ?? "all";
+
+            statusButtons.forEach((button) => {
+                button.classList.remove(
+                    "border-cyan-400",
+                    "bg-cyan-400",
+                    "text-black",
+                );
+
+                button.classList.add("border-white/30", "text-white/70");
+            });
+
+            button.classList.remove("border-white/30", "text-white/70");
+
+            button.classList.add(
+                "border-cyan-400",
+                "bg-cyan-400",
+                "text-black",
+            );
+
+            updateProjects();
+        });
+    });
+
+    tagFilter?.addEventListener("change", () => {
+        tag = tagFilter.value;
+
+        updateProjects();
+    });
+</script>

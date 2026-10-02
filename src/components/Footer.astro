@@ -7,26 +7,5 @@
 
     <span>© 2026 CoreCat</span>
 
-    <span>
-        <span id="page-views">-</span> views
-    </span>
+    <span>build <code>{import.meta.env.PUBLIC_GIT_COMMIT?.slice(0, 7) ?? "dev"}</code></span>
 </footer>
-
-<script>
-    const views = document.getElementById("page-views");
-
-    if (views) {
-        fetch("https://corecathx.goatcounter.com/counter/TOTAL.json")
-            .then((response) => {
-                console.log(response.status);
-                return response.json();
-            })
-            .then((data) => {
-                console.log(data);
-                views.textContent = data.count;
-            })
-            .catch((error) => {
-                console.error("GoatCounter:", error);
-            });
-    }
-</script>
