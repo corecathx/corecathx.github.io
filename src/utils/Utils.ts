@@ -1,5 +1,5 @@
 const _baseGithubURL: string = 'https://github.com/corecathx';
-const _baseArtworkPath: string = '/public/images/artworks';
+const _baseArtworkPath: string = '/images/artworks';
 
 export const Utils = {
     getArtworkImage(name: string) {
