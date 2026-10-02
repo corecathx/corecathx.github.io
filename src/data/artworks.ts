@@ -35,7 +35,7 @@ export const artworks: Artwork[] = [
         description: "Core if he's a desktop pet, inspired by Alan Becker's AVA Animations.",
         image: Utils.getArtworkImage("Desktop_Pet--27-08-2024.png"),
         date: "27-08-2024",
-        tags: ['corecat', 'full-artwork', 'desktop']
+        tags: ['corecat', 'full-artwork']
     },
     {
         title: "Afternoon Walk",
