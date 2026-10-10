@@ -249,5 +249,12 @@ export const artworks: Artwork[] = [
         date: "26-08-2026",
         tags: ['fanart', 'full-artwork']
     },
+    {
+        title: "Keychain Design",
+        description: "A design I made for my keychains.",
+        image: Utils.getArtworkImage('Keychain_Design--08-10-2026.png'),
+        date: '08-10-2026',
+        tags: ['corecat', 'bytewolf', 'kean', 'chip', 'full-artwork']
+    },
 ]
 //
