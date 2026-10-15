@@ -14,6 +14,7 @@ export const tagColors: Record<string, string> = {
     bytewolf: "#088FFF",
     kean: "#FFA100",
     chip: "#00FFFF",
+    whisker: "#B3C5FF",
 }
 
 export const characterTags = [
@@ -21,6 +22,7 @@ export const characterTags = [
     "bytewolf",
     "kean",
     "chip",
+    "whisker"
 ]
 
 //// helper functions ////
@@ -255,6 +257,13 @@ export const artworks: Artwork[] = [
         image: Utils.getArtworkImage('Keychain_Design--08-10-2026.png'),
         date: '08-10-2026',
         tags: ['corecat', 'bytewolf', 'kean', 'chip', 'full-artwork']
+    },
+    {
+        title: "Whisker",
+        description: "New wallpaper for Whisker Shell.",
+        image: Utils.getArtworkImage('Whisker--15-10-2026.png'),
+        date: '15-10-2026',
+        tags: ['whisker', 'full-artwork']
     },
 ]
 //
