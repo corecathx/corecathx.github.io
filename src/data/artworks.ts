@@ -88,7 +88,7 @@ export const artworks: Artwork[] = [
         description: "How Byte's design should look like, based off his FNF Design.",
         image: Utils.getArtworkImage("Afternoon_Walk--15-09-2024.png"),
         date: "15-09-2024",
-        tags: ['corecat', 'full-artwork']
+        tags: ['bytewolf', 'full-artwork']
     },
     {
         title: "Farewell",
