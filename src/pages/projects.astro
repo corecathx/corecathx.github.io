@@ -13,11 +13,9 @@ const tags = [
 ---
 
 <MainLayout>
-    <section
-        class="mt-2 relative h-42 md:h-80 border border-white/50 flex flex-col justify-center bg-[#202020] overflow-hidden"
-    >
+    <section class="mt-2 relative h-42 md:h-80 border border-white/50 flex flex-col justify-center bg-[#202020] overflow-hidden">
         <img
-            src="/images/core-and-chip.png"
+            src="/images/doodles/core-and-chip.png"
             alt="An image of Core and Chip with a laptop."
             class="absolute right-0 bottom-0 h-28 md:h-60 opacity-20"
         />
@@ -31,9 +29,7 @@ const tags = [
         </div>
     </section>
 
-    <section
-        class="mt-2 border border-white/50 p-4 flex flex-wrap justify-center gap-3"
-    >
+    <section class="mt-2 border border-white/50 p-4 flex flex-wrap justify-center gap-3">
         <div class="flex flex-wrap gap-2">
             <button
                 class="filter-status border border-cyan-400 bg-cyan-400 text-black px-3 py-1 text-sm"
@@ -70,16 +66,16 @@ const tags = [
         >
             <option value="all">All tags</option>
 
-            {tags.map((tag) => <option value={tag}>{tag}</option>)}
+            {tags.map((tag) => (
+                <option value={tag}>{tag}</option>
+            ))}
         </select>
     </section>
 
     <section class="mt-2 border border-white/50 flex-col">
-        {
-            projectsWithStars.map((project, index) => (
-                <ProjectCard project={project} index={index} />
-            ))
-        }
+        {projectsWithStars.map((project, index) => (
+            <ProjectCard project={project} index={index} />
+        ))}
     </section>
 </MainLayout>
 

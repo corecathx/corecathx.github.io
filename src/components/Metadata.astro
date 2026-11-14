@@ -1,0 +1,33 @@
+---
+interface Props {
+    title?: string;
+    description?: string;
+    image?: string;
+}
+
+const {
+    title = "CoreCat",
+    description = "Programmer, Composer, and Artist.",
+    image = "/images/og-image.png",
+} = Astro.props;
+
+const siteName = "CoreCat";
+const siteURL = import.meta.env.DEV ? Astro.url : Astro.site!;
+const pageTitle = title === siteName ? siteName : `${title} | ${siteName}`;
+const canonicalURL = new URL(Astro.url.pathname, siteURL);
+const ogImage = new URL(image, siteURL);
+---
+
+<title>{pageTitle}</title>
+<meta name="description" content={description} />
+
+<link rel="canonical" href={canonicalURL} />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:image" content={ogImage} />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:image" content={ogImage} />

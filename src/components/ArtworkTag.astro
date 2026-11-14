@@ -1,0 +1,38 @@
+---
+import { tagColors } from "../data/artworks";
+
+type Props = {
+    tag: string;
+    filter?: "character" | "tag";
+};
+
+const { tag, filter } = Astro.props;
+const color = tagColors[tag];
+---
+
+{filter ? (
+    <button
+        type="button"
+        class:list={[
+            "border text-white/70 hover:border-white/70 px-3 py-1 text-sm text-left",
+            filter === "character" ? "filter-character" : "filter-tag",
+        ]}
+        data-character={filter === "character" ? tag : undefined}
+        data-tag={filter === "tag" ? tag : undefined}
+        data-color={color ?? ""}
+        style={color ? `color: ${color}; border-color: ${color}80;` : undefined}
+    >
+        {tag}
+    </button>
+) : (
+    <span
+        data-artwork-tag
+        class:list={[
+            "text-xs border px-2 py-1",
+            !color && "border-white/50 text-white/70",
+        ]}
+        style={color ? `color: ${color}; border-color: ${color}80;` : undefined}
+    >
+        {tag}
+    </span>
+)}

@@ -1,0 +1,326 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import ArtworkCard from "../../components/cards/ArtworkCard.astro";
+import ArtworkTag from "../../components/ArtworkTag.astro";
+
+import {
+    getSortedArtworks,
+    getArtworkTags,
+    characterTags,
+} from "../../data/artworks";
+
+const sortedArtworks = getSortedArtworks();
+const tags = getArtworkTags();
+---
+
+<MainLayout>
+    <section class="mt-2 relative h-42 md:h-80 border border-white/50 flex flex-col justify-center bg-[#202020] overflow-hidden">
+        <img
+            src="/images/doodles/crowd.png"
+            alt="Doodles."
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-20 w-full"
+        />
+
+        <div class="ml-6 md:ml-10 w-4/5 md:w-fit z-10">
+            <h1 class="text-2xl md:text-4xl font-bold">Artworks</h1>
+
+            <p class="mt-2 text-sm md:text-base text-white/70">
+                Things I've drawn, doodled, and made.
+            </p>
+        </div>
+    </section>
+
+    <section class="mt-2 border border-yellow-200 text-yellow-200 p-4 flex flex-col md:flex-row md:items-center justify-between gap-3">
+        <div>
+            <h2 class="text-sm font-bold">Hey there!</h2>
+            <p class="text-sm text-yellow-200/60 mt-1">
+                Please read my artwork usage policy before downloading or using
+                any artwork.
+            </p>
+        </div>
+
+        <a
+            href="/artworks/policy/"
+            class="shrink-0 border border-yellow-200 hover:bg-yellow-200 hover:text-black px-3 py-2 text-sm text-center"
+        >
+            Artwork Usage Policy
+        </a>
+    </section>
+
+    <section class="mt-2 grid grid-cols-1 md:grid-cols-[180px_1fr] gap-2">
+        <aside class="border border-white/50 p-4 h-fit md:sticky md:top-18">
+            <div>
+                <h2 class="text-xs text-white/40 mb-3">CHARACTER</h2>
+
+                <div class="flex flex-wrap md:flex-col gap-2">
+                    {characterTags.map((tag) => (
+                        <ArtworkTag tag={tag} filter="character" />
+                    ))}
+                </div>
+            </div>
+
+            <div class="mt-6">
+                <h2 class="text-xs text-white/40 mb-3">TAGS</h2>
+
+                <div class="flex flex-wrap md:flex-col gap-2">
+                    {tags.map((tag) => (
+                        <ArtworkTag tag={tag} filter="tag" />
+                    ))}
+                </div>
+            </div>
+
+            <button
+                type="button"
+                id="clear-filters"
+                class="mt-6 border border-cyan-400 text-cyan-400 hover:text-black hover:bg-cyan-400 px-3 py-1 text-sm w-full"
+            >
+                Clear filters
+            </button>
+        </aside>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-2">
+            {sortedArtworks.map((artwork) => (
+                <ArtworkCard artwork={artwork} />
+            ))}
+            <p
+                id="no-artworks"
+                class="hidden col-span-full text-center text-white/40 py-12 text-sm"
+            >
+                No artworks found.
+            </p>
+        </div>
+    </section>
+
+    <dialog
+        id="artwork-modal"
+        class="m-auto max-w-[95vw] max-h-[95vh] w-fit bg-transparent text-white p-0 outline-none border border-white/50"
+    >
+        <div class="relative flex flex-col md:flex-row max-h-[95vh]">
+            <button
+                type="button"
+                id="artwork-modal-close"
+                class="absolute flex top-2 right-2 z-10 border border-white/50 hover:bg-white text-white hover:text-black px-1 py-1 justify-center items-center"
+                aria-label="Close artwork"
+                onclick="document.getElementById('artwork-modal').close()"
+            >
+                <span class="material-symbols-sharp text-base">close</span>
+            </button>
+
+            <div class="flex items-center justify-center min-w-0">
+                <img
+                    id="artwork-modal-image"
+                    src=""
+                    alt=""
+                    class="block max-w-[95vw] md:max-w-[65vw] max-h-[65vh] md:max-h-[90vh] object-contain"
+                />
+            </div>
+
+            <div class="w-full md:w-72 shrink-0 flex flex-col p-4 gap-4 overflow-y-auto border-t md:border-t-0 md:border-l border-white/50 bg-black/70">
+                <div>
+                    <h2 id="artwork-modal-title" class="text-xl font-bold"></h2>
+                    <p
+                        id="artwork-modal-date"
+                        class="text-xs text-white/40 mt-1"
+                    ></p>
+                </div>
+
+                <p
+                    id="artwork-modal-description"
+                    class="text-sm text-white/70"
+                ></p>
+
+                <div id="artwork-modal-tags" class="flex flex-wrap gap-2"></div>
+                <div class="mt-auto pt-4 border-t border-white/50">
+                    <label class="flex items-start gap-2 text-xs text-white/60 mb-3 cursor-pointer">
+                        <input
+                            type="checkbox"
+                            id="artwork-policy-checkbox"
+                            class="appearance-none size-4 shrink-0 border border-white/50 bg-transparent checked:bg-cyan-400 checked:border-cyan-400 checked:before:content-['✓'] checked:before:flex checked:before:items-center checked:before:justify-center checked:before:text-black checked:before:text-xs"
+                        />
+
+                        <span>
+                            I have read and agree to the&nbsp;
+                            <a
+                                href="/artworks/policy/"
+                                target="_blank"
+                                class="text-cyan-400 hover:underline"
+                            >
+                                Artwork Usage Policy
+                            </a>
+                            .
+                        </span>
+                    </label>
+
+                    <a
+                        id="artwork-modal-download"
+                        href=""
+                        download
+                        aria-disabled="true"
+                        class="flex items-center justify-center gap-2 border border-white/50 hover:bg-white text-white hover:text-black px-3 py-2 text-sm opacity-40 pointer-events-none"
+                    >
+                        <span class="material-symbols-sharp text-base">
+                            download
+                        </span>
+                        Download
+                    </a>
+                </div>
+            </div>
+        </div>
+    </dialog>
+</MainLayout>
+
+<style>
+    #artwork-modal::backdrop {
+        background: rgb(0 0 0 / 80%);
+    }
+</style>
+
+<script>
+    // @ts-nocheck
+
+    const characterButtons = document.querySelectorAll(".filter-character");
+    const tagButtons = document.querySelectorAll(".filter-tag");
+    const artworks = document.querySelectorAll("[data-artwork]");
+    const clearButton = document.querySelector("#clear-filters");
+
+    const selectedCharacters = new Set();
+    const selectedTags = new Set();
+
+    function updateArtworks() {
+        let visibleArtworks = 0;
+
+        artworks.forEach((artwork) => {
+            const tags = artwork.dataset.tags?.split(",") ?? [];
+
+            const matchesCharacters =
+                selectedCharacters.size === 0 ||
+                [...selectedCharacters].every((tag) => tags.includes(tag));
+
+            const matchesTags =
+                selectedTags.size === 0 ||
+                [...selectedTags].every((tag) => tags.includes(tag));
+
+            const hidden = !matchesCharacters || !matchesTags;
+
+            artwork.classList.toggle("hidden", hidden);
+
+            if (!hidden) visibleArtworks++;
+        });
+
+        document
+            .querySelector("#no-artworks")
+            ?.classList.toggle("hidden", visibleArtworks > 0);
+    }
+
+    function updateButton(button, active) {
+        const color = button.dataset.color || "#ffffff";
+
+        if (active) {
+            button.style.backgroundColor = color;
+            button.style.color = "black";
+            button.style.borderColor = color;
+            return;
+        }
+
+        button.style.backgroundColor = "";
+        button.style.color = button.dataset.color || "";
+        button.style.borderColor = button.dataset.color
+            ? `${button.dataset.color}80`
+            : "";
+    }
+
+    characterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const tag = button.dataset.character;
+
+            if (selectedCharacters.has(tag)) {
+                selectedCharacters.delete(tag);
+                updateButton(button, false);
+            } else {
+                selectedCharacters.add(tag);
+                updateButton(button, true);
+            }
+
+            updateArtworks();
+        });
+    });
+
+    tagButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const tag = button.dataset.tag;
+
+            if (selectedTags.has(tag)) {
+                selectedTags.delete(tag);
+                updateButton(button, false);
+            } else {
+                selectedTags.add(tag);
+                updateButton(button, true);
+            }
+
+            updateArtworks();
+        });
+    });
+
+    clearButton?.addEventListener("click", () => {
+        selectedCharacters.clear();
+        selectedTags.clear();
+
+        characterButtons.forEach((button) => updateButton(button, false));
+        tagButtons.forEach((button) => updateButton(button, false));
+
+        updateArtworks();
+    });
+
+    const modal = document.querySelector("#artwork-modal");
+    const image = document.querySelector("#artwork-modal-image");
+    const title = document.querySelector("#artwork-modal-title");
+    const date = document.querySelector("#artwork-modal-date");
+    const description = document.querySelector("#artwork-modal-description");
+    const tagsContainer = document.querySelector("#artwork-modal-tags");
+    const download = document.querySelector("#artwork-modal-download");
+    const policyCheckbox = document.querySelector("#artwork-policy-checkbox");
+
+    policyCheckbox.addEventListener("change", () => {
+        const allowed = policyCheckbox.checked;
+
+        download.classList.toggle("opacity-40", !allowed);
+        download.classList.toggle("pointer-events-none", !allowed);
+        download.setAttribute("aria-disabled", String(!allowed));
+    });
+
+    document.querySelectorAll("[data-image]").forEach((button) => {
+        button.onclick = () => {
+            const artwork = button.closest("[data-artwork]");
+            const tags = artwork.dataset.tags?.split(",") ?? [];
+
+            image.src = button.dataset.image;
+            image.alt = button.dataset.title;
+
+            title.textContent = button.dataset.title;
+            date.textContent = artwork.dataset.date;
+            description.textContent = artwork.dataset.description;
+
+            tagsContainer.replaceChildren(
+                ...Array.from(
+                    artwork.querySelectorAll("[data-artwork-tag]"),
+                    (tag) => tag.cloneNode(true),
+                ),
+            );
+
+            download.href = button.dataset.image;
+            download.download = button.dataset.image.split("/").pop();
+
+            modal.showModal();
+
+            policyCheckbox.checked = false;
+            download.classList.add("opacity-40", "pointer-events-none");
+            download.setAttribute("aria-disabled", "true");
+        };
+    });
+
+    modal.onclick = (event) => {
+        if (event.target === modal) {
+            modal.close();
+        }
+    };
+</script>

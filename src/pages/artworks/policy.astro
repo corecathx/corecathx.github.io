@@ -1,0 +1,138 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+---
+
+<MainLayout>
+    <section class="mt-2 relative h-42 md:h-80 border border-white/50 flex flex-col justify-center bg-[#202020] overflow-hidden">
+        <img
+            src="/images/doodles/core-rules.png"
+            alt="A cat holding a paper."
+            class="absolute right-2 bottom-2 h-28 md:h-60 opacity-20"
+        />
+
+        <div class="ml-6 md:ml-10 w-4/5 md:w-fit z-10">
+            <h1 class="text-2xl md:text-4xl font-bold">Artwork Usage Policy</h1>
+            <p class="mt-2 text-sm md:text-base text-white/70">
+                Rules and permissions regarding the use of my artworks.
+            </p>
+        </div>
+    </section>
+
+    <section class="mt-2 border border-white/50 p-6 md:p-10">
+        <p class="text-sm md:text-base text-white/70 leading-relaxed">
+            My artworks are shared across this website and other platforms. If
+            you'd like to use any of them, please follow the guidelines below.
+        </p>
+
+        <p class="mt-4 text-xs text-white/40">
+            Policy last updated: November 14th, 2026. These guidelines may
+            change over time, so please check this page for updates.
+        </p>
+
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <section>
+                <h2 class="text-xl font-bold text-cyan-400">Allowed</h2>
+
+                <ul class="mt-4 space-y-3 text-sm text-white/70 leading-relaxed list-disc pl-5">
+                    <li>
+                        Personal use, including wallpapers, profile pictures,
+                        and banners. Watermarks may only be removed when the
+                        artwork is kept private.
+                    </li>
+                    <li>
+                        Reposting or sharing my non-commissioned artworks
+                        publicly, provided proper credit is given and the
+                        watermark remains intact.
+                    </li>
+                    <li>
+                        Sharing screenshots of my artworks with proper credit.
+                        An accidentally cropped or missing watermark is
+                        acceptable in this case.
+                    </li>
+                    <li>
+                        Creating fanart or original works inspired by my
+                        artworks, provided they are independently created and do
+                        not trace or copy my work. Credit is optional.
+                    </li>
+                    <li>
+                        Commissioners may publish, edit, use commercially, and
+                        share their commissioned artwork files without asking
+                        for additional permission. Credit is appreciated but
+                        optional.
+                    </li>
+                    <li>Cropping my non-commissioned artworks.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-bold text-red-400">Prohibited</h2>
+
+                <ul class="mt-4 space-y-3 text-sm text-white/70 leading-relaxed list-disc pl-5">
+                    <li>
+                        Using my artworks in inappropriate, harmful, offensive,
+                        or misleading contexts.
+                    </li>
+                    <li>
+                        Using my artworks for AI training, fine-tuning, testing,
+                        dataset creation, or analysis.
+                    </li>
+                    <li>
+                        Uploading my artworks to AI tools as inputs or
+                        references, including image-to-image generation, image
+                        description, or other AI-generated derivatives.
+                    </li>
+                    <li>
+                        Tracing, directly reproducing, or copying my artworks.
+                    </li>
+                    <li>
+                        Editing non-commissioned artworks, including adding
+                        text, applying filters, recoloring, or making other
+                        alterations. Cropping is allowed.
+                    </li>
+                    <li>Removing watermarks from artworks shared publicly.</li>
+                    <li>
+                        Redistributing original non-commissioned artwork files
+                        through file-sharing services, external file hosts, or
+                        other platforms.
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-bold text-yellow-200">
+                    Requires Permission
+                </h2>
+
+                <ul class="mt-4 space-y-3 text-sm text-white/70 leading-relaxed list-disc pl-5">
+                    <li>
+                        Using non-commissioned artworks in commercial content,
+                        including monetized videos, advertisements, or
+                        promotional material for businesses, products, or
+                        services.
+                    </li>
+                    <li>
+                        Using non-commissioned artworks in personal projects,
+                        such as personal websites, free games, school projects,
+                        or hobby projects.
+                    </li>
+                    <li>Any use not explicitly covered by this policy.</li>
+                </ul>
+            </section>
+        </div>
+
+        <div class="pt-4 mt-8 border-t border-white/30 flex flex-col gap-3">
+            <div class="flex items-start gap-2 text-white/50 text-xs">
+                <span class="material-symbols-sharp text-xl">info</span>
+                <p class="mt-1">
+                    Permission must be explicitly granted before proceeding.
+                    Giving credit does not replace the need for permission. For
+                    public reposts, credit me as&nbsp;
+                    <span class="text-white/70">
+                        Artwork by @core5570r (Instagram)
+                    </span>
+                    .
+                </p>
+            </div>
+        </div>
+    </section>
+</MainLayout>

@@ -2,10 +2,9 @@
 import "../styles/global.css";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
+import Metadata from "../components/Metadata.astro";
 
-const { 
-    title = "CoreCat" 
-} = Astro.props;
+const { title = "CoreCat", description, image } = Astro.props;
 ---
 
 <html lang="en">
@@ -15,10 +14,14 @@ const {
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
+
         <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp"
         />
+
+        <Metadata title={title} description={description} image={image} />
+
         <style>
             .checkerboard {
                 background-color: var(--background);
@@ -41,7 +44,7 @@ const {
 
     <body class="checkerboard p-2">
         <main class="mx-auto max-w-7xl min-w-0 flex flex-col">
-            <Navbar/>
+            <Navbar />
             <div class="h-2"></div>
             <slot />
             <Footer />
